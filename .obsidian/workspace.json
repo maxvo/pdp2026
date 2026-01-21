@@ -204,8 +204,19 @@
               "icon": "lucide-archive",
               "title": "All properties"
             }
+          },
+          {
+            "id": "be86ccb079961aae",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
           }
-        ]
+        ],
+        "currentTab": 2
       },
       {
         "id": "bf5ad54ca97ccd99",
@@ -238,10 +249,11 @@
       "templater-obsidian:Templater": true,
       "obsidian-day-planner:Open Timeline": false,
       "obsidian-day-planner:Open Multi-Day View": false,
-      "periodic-notes:Open today": false
+      "periodic-notes:Open today": false,
+      "obsidian-git:Open Git source control": false
     }
   },
-  "active": "623b4809c8849b4b",
+  "active": "634eb5d55251b70b",
   "lastOpenFiles": [
     "050_agenda/050.1_daily/2026-01-19.md",
     "050_agenda/050.1_daily/2026-01-20.md",
