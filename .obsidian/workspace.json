@@ -1,0 +1,283 @@
+{
+  "main": {
+    "id": "7c7934b430daaf28",
+    "type": "split",
+    "children": [
+      {
+        "id": "e79eb9fa14f2ab55",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "dcc0862c9721e3a8",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "099_excalidraw/visao-geral-pdp.md"
+              },
+              "pinned": true,
+              "icon": "excalidraw-icon",
+              "title": "visao-geral-pdp"
+            }
+          },
+          {
+            "id": "0b16ef11634cf41c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "050_agenda/050.2_weekly/2026-W03.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-W03"
+            }
+          },
+          {
+            "id": "623b4809c8849b4b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "050_agenda/050.1_daily/2026-01-20.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-01-20"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "6802a8046905032e",
+    "type": "split",
+    "children": [
+      {
+        "id": "fff24d442c86ecab",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8a6613f454879cc2",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "79ff57c4cf7fb728",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "aa4334d5f2223080",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "050_agenda/050.1_daily/2026-01-07.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of 2026-01-07"
+            }
+          },
+          {
+            "id": "d948a957b607e8e2",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          },
+          {
+            "id": "f4b503f77edfe40e",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "258ef17fa639e2ed",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "050_agenda/050.1_daily/2026-01-07.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from 2026-01-07"
+            }
+          },
+          {
+            "id": "e0b47b9a07e73d8b",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "050_agenda/050.1_daily/2026-01-07.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for 2026-01-07"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 334.5
+  },
+  "right": {
+    "id": "17f45d87c929b8ce",
+    "type": "split",
+    "children": [
+      {
+        "id": "6a8261e5bc00035d",
+        "type": "tabs",
+        "dimension": 24.71264367816092,
+        "children": [
+          {
+            "id": "c3adaf74069274bf",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
+            }
+          },
+          {
+            "id": "6533d2405bef162a",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          }
+        ]
+      },
+      {
+        "id": "bf5ad54ca97ccd99",
+        "type": "tabs",
+        "dimension": 75.28735632183908,
+        "children": [
+          {
+            "id": "634eb5d55251b70b",
+            "type": "leaf",
+            "state": {
+              "type": "planner-timeline",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Timeline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 605.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": true,
+      "graph:Open graph view": true,
+      "command-palette:Open command palette": true,
+      "bases:Create new base": true,
+      "obsidian-excalidraw-plugin:New drawing": true,
+      "templater-obsidian:Templater": true,
+      "obsidian-day-planner:Open Timeline": false,
+      "obsidian-day-planner:Open Multi-Day View": false,
+      "periodic-notes:Open today": false
+    }
+  },
+  "active": "623b4809c8849b4b",
+  "lastOpenFiles": [
+    "050_agenda/050.1_daily/2026-01-19.md",
+    "050_agenda/050.1_daily/2026-01-20.md",
+    "050_agenda/050.1_daily/2026-01-12.md",
+    "040_entrega/Building applications with AI Agents.md",
+    "099_excalidraw/visao-geral-pdp.md",
+    "050_agenda/050.2_weekly/2026-W03.md",
+    "050_agenda/050.1_daily/2026-01-15.md",
+    "050_agenda/050.1_daily/2026-01-16.md",
+    "050_agenda/050.1_daily/2026-01-14.md",
+    "050_agenda/050.1_daily/2026-01-13.md",
+    "050_agenda/050.1_daily/2026-01-09.md",
+    "050_agenda/050.2_weekly/2026-W02.md",
+    "050_agenda/050.1_daily/2026-01-06.md",
+    "050_agenda/050.1_daily/2026-01-05.md",
+    "050_agenda/050.1_daily/2026-01-07.md",
+    "099_templates/050.02_weekly.md.md",
+    "050_agenda/050.1_daily/2026-01-08.md",
+    "045_overhead/Especialista daily banking.md",
+    "045_overhead/Conversas de carreira.md",
+    "040_entrega/Identificar pessoas com o perfil de especialista.md",
+    "099_excalidraw/scripts/Draw Objectives.md.md",
+    "045_overhead/Especialista do banco.md",
+    "Excalidraw/Drawing 2026-01-05 08.46.04.excalidraw.md",
+    "030_resultado/Apresentar tendências de mercado e inovações tecnológicas pelo menos três vezes ao ano.md",
+    "040_entrega/Tendências de mercado (nov26).md",
+    "040_entrega/Tendências de mercado (fev26).md",
+    "050_agenda/050.5_yearly",
+    "050_agenda/050.4_quarterly",
+    "050_agenda/050.3_monthly",
+    "050_agenda/050.2_weekly",
+    "050_agenda/050.1_daily",
+    "Excalidraw",
+    "099_excalidraw/scripts",
+    "Scripts",
+    "040_entrega/livros",
+    "065_softskills"
+  ]
+}

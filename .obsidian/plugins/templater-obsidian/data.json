@@ -1,0 +1,54 @@
+{
+  "command_timeout": 5,
+  "templates_folder": "",
+  "templates_pairs": [
+    [
+      "",
+      ""
+    ]
+  ],
+  "trigger_on_file_creation": true,
+  "auto_jump_to_cursor": false,
+  "enable_system_commands": false,
+  "shell_path": "",
+  "user_scripts_folder": "",
+  "enable_folder_templates": true,
+  "folder_templates": [
+    {
+      "folder": "050_agenda/050.1_daily",
+      "template": "099_templates/050.01_daily.md.md"
+    },
+    {
+      "folder": "050_agenda/050.2_weekly",
+      "template": "099_templates/050.02_weekly.md.md"
+    },
+    {
+      "folder": "050_agenda/050.3_monthly",
+      "template": "099_templates/050.03_monthly.md.md"
+    },
+    {
+      "folder": "050_agenda/050.4_quarterly",
+      "template": "099_templates/050.04_quarterly.md.md"
+    },
+    {
+      "folder": "050_agenda/050.5_yearly",
+      "template": "099_templates/050.05_yearly.md.md"
+    }
+  ],
+  "enable_file_templates": false,
+  "file_templates": [
+    {
+      "regex": ".*",
+      "template": ""
+    }
+  ],
+  "syntax_highlighting": true,
+  "syntax_highlighting_mobile": false,
+  "enabled_templates_hotkeys": [
+    ""
+  ],
+  "startup_templates": [
+    ""
+  ],
+  "intellisense_render": 1
+}
