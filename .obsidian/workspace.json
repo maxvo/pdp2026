@@ -41,28 +41,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "050_agenda/050.1_daily/2026-01-20.md",
+                "file": "050_agenda/050.1_daily/2026-01-21.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-01-20"
-            }
-          },
-          {
-            "id": "aee371c51ec3f0a6",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.11.5"
-              },
-              "icon": "lucide-book-up",
-              "title": "Release Notes 1.11.5"
+              "title": "2026-01-21"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -227,8 +215,7 @@
               "title": "Source Control"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       },
       {
         "id": "bf5ad54ca97ccd99",
@@ -261,13 +248,15 @@
       "templater-obsidian:Templater": true,
       "obsidian-day-planner:Open Timeline": false,
       "obsidian-day-planner:Open Multi-Day View": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "periodic-notes:Open today": false
     }
   },
-  "active": "aee371c51ec3f0a6",
+  "active": "623b4809c8849b4b",
   "lastOpenFiles": [
-    "050_agenda/050.1_daily/2026-01-19.md",
     "050_agenda/050.1_daily/2026-01-20.md",
+    "050_agenda/050.1_daily/2026-01-21.md",
+    "050_agenda/050.1_daily/2026-01-19.md",
     "050_agenda/050.1_daily/2026-01-12.md",
     "040_entrega/Building applications with AI Agents.md",
     "099_excalidraw/visao-geral-pdp.md",
@@ -291,7 +280,6 @@
     "Excalidraw/Drawing 2026-01-05 08.46.04.excalidraw.md",
     "030_resultado/Apresentar tendências de mercado e inovações tecnológicas pelo menos três vezes ao ano.md",
     "040_entrega/Tendências de mercado (nov26).md",
-    "040_entrega/Tendências de mercado (fev26).md",
     "050_agenda/050.5_yearly",
     "050_agenda/050.4_quarterly",
     "050_agenda/050.3_monthly",
