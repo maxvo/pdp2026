@@ -1,7 +1,8 @@
-/* * Excalidraw Script: Objective Matrix + Gantt Timeline (FIXED)
+/* * Excalidraw Script: Objective Matrix + Gantt (Date Sorted)
 * Description: 
-* - Corrected 'ea.addLine' syntax error.
-* - Generates timeline grid and places deliverables by date.
+* - Obj & Res columns (Left)
+* - Timeline (Right)
+* - DELIVERABLES SORTED BY START DATE
 */
 
 // --- CONFIGURATION ---
@@ -15,13 +16,13 @@ const settings = {
 
     // LAYOUT (Left Side)
     startX: 0,
-    startY: 100,          // Moved down for headers
+    startY: 100,          
     colWidth: 250,        
     gapX: 20,             
     
     // TIMELINE (Right Side)
-    timelineStartX: 600,  
-    pixelsPerDay: 10,      // Scale (increase to stretch timeline)
+    timelineStartX: 800,  
+    pixelsPerDay: 6,      
     gridColor: "#e9ecef", 
 
     // ROW SIZING
@@ -74,21 +75,18 @@ function getGlobalDateRange(files) {
     let max = new Date();
     max.setMonth(max.getMonth() + 3); 
 
-    let found = false;
     for (const f of files) {
         const c = app.metadataCache.getFileCache(f);
         if (c?.frontmatter?.startDate) {
             const d = new Date(c.frontmatter.startDate);
             if (!isNaN(d) && d < min) min = d;
-            found = true;
         }
         if (c?.frontmatter?.dueDate) {
             const d = new Date(c.frontmatter.dueDate);
             if (!isNaN(d) && d > max) max = d;
-            found = true;
         }
     }
-    // Add 15 days buffer
+    // Buffer
     min.setDate(min.getDate() - 15);
     max.setDate(max.getDate() + 15);
     return { min, max };
@@ -145,25 +143,20 @@ ea.style.fontFamily = settings.fontFamily;
 ea.style.fontSize = settings.fontSize;
 
 let loopDate = new Date(globalStart);
-loopDate.setDate(1); // Snap to 1st
+loopDate.setDate(1); 
 
-// Calculate approximate total height for grid lines
-const estimatedTotalHeight = Math.max(500, objFiles.length * 300); 
+// Estimate height for grid lines
+const estimatedTotalHeight = Math.max(500, objFiles.length * 400); 
 
 while (loopDate <= globalEnd) {
     const x = getXFromDate(loopDate, globalStart);
     
-    // 1. Draw Grid Line (FIXED SYNTAX)
+    // Draw Grid Line
     ea.style.strokeColor = settings.gridColor;
     ea.style.strokeWidth = 1;
-    
-    // Note the double brackets [[x,y], [x,y]]
-    ea.addLine([
-        [x, settings.startY - 30], 
-        [x, settings.startY + estimatedTotalHeight]
-    ]);
+    ea.addLine([[x, settings.startY - 30], [x, settings.startY + estimatedTotalHeight]]);
 
-    // 2. Draw Month Label
+    // Draw Month Label
     const monthName = loopDate.toLocaleString('default', { month: 'short', year: '2-digit' });
     ea.style.strokeColor = "#888888"; 
     ea.addText(x + 5, settings.startY - 50, monthName);
@@ -171,7 +164,7 @@ while (loopDate <= globalEnd) {
     loopDate.setMonth(loopDate.getMonth() + 1);
 }
 
-// Reset styles for content
+// Reset styles
 ea.style.backgroundColor = "transparent";
 ea.style.fillStyle = "hachure";
 ea.style.strokeWidth = 1;
@@ -189,8 +182,15 @@ for (let i = 0; i < objFiles.length; i++) {
     let totalRowHeight = 0;
 
     for (const resFile of myResults) {
-        const myEntregas = mapEntToRes[resFile.basename] || [];
+        let myEntregas = mapEntToRes[resFile.basename] || [];
         
+        // --- NEW STEP: SORT BY DATE ---
+        myEntregas.sort((a, b) => {
+            const dateA = a.startDate ? new Date(a.startDate).getTime() : 0;
+            const dateB = b.startDate ? new Date(b.startDate).getTime() : 0;
+            return dateA - dateB;
+        });
+
         const entLayouts = [];
         let entStackHeight = 0;
 
@@ -254,7 +254,7 @@ for (let i = 0; i < objFiles.length; i++) {
         const resTextId = ea.addText(resX + settings.padding, resY + settings.padding, resItem.resText);
         ea.addToGroup([resRectId, resTextId]);
 
-        // Col 3 (Timeline)
+        // Col 3 (Sorted Timeline Items)
         let entY = resY;
         for (const entItem of resItem.entregas) {
             const entRectId = ea.addRect(entItem.x, entY, entItem.width, entItem.height);
@@ -269,4 +269,4 @@ for (let i = 0; i < objFiles.length; i++) {
 }
 
 await ea.addElementsToView(true, true, true);
-new Notice(`✅ Gantt Timeline Generated.`);
+new Notice(`✅ Gantt Sorted by Date.`);
