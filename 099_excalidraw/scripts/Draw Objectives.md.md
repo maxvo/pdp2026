@@ -1,8 +1,8 @@
-/* * Excalidraw Script: Objective Matrix + Gantt (Date Sorted)
+/* * Excalidraw Script: Gantt Matrix (Linked & Perfect Grid)
 * Description: 
-* - Obj & Res columns (Left)
-* - Timeline (Right)
-* - DELIVERABLES SORTED BY START DATE
+* - Starts Jan 2026.
+* - Grid lines match exact chart height.
+* - Clickable links to notes.
 */
 
 // --- CONFIGURATION ---
@@ -14,16 +14,17 @@ const settings = {
     resFolder: "030_resultado", 
     entFolder: "040_entrega",
 
-    // LAYOUT (Left Side)
+    // TIMELINE CONFIG
+    forceStartDate: "2026-01-01", // <--- Force Start Date
+    pixelsPerDay: 7,      
+    gridColor: "#e9ecef", 
+
+    // LAYOUT
     startX: 0,
     startY: 100,          
     colWidth: 250,        
     gapX: 20,             
-    
-    // TIMELINE (Right Side)
-    timelineStartX: 800,  
-    pixelsPerDay: 6,      
-    gridColor: "#e9ecef", 
+    timelineStartX: 600,  
 
     // ROW SIZING
     padding: 10,          
@@ -32,11 +33,12 @@ const settings = {
 
     // STYLE
     fontSize: 16,
-    fontFamily: 2,        
+    fontFamily: 1,        
     colors: ["#4a6fa5", "#5c8a8a"] 
 };
 
 // --- HELPERS ---
+
 function cleanLink(val) {
     if (!val) return "";
     let raw = Array.isArray(val) ? val[0] : val;
@@ -69,26 +71,30 @@ function getTextHeight(text, maxWidth) {
     return { text: wrapped, height: metrics.height + (settings.padding * 2) };
 }
 
+// Helper to make text clickable
+function addLinkedText(x, y, text, filename) {
+    const id = ea.addText(x, y, text);
+    const el = ea.getElement(id);
+    el.link = `[[${filename}]]`; // <--- Adds the Obsidian Link
+    return id;
+}
+
 // --- DATE MATH ---
+
 function getGlobalDateRange(files) {
-    let min = new Date(); 
-    let max = new Date();
-    max.setMonth(max.getMonth() + 3); 
+    // 1. Force Start Date
+    let min = new Date(settings.forceStartDate);
+    let max = new Date(min);
+    max.setMonth(max.getMonth() + 6); // Default horizon
 
     for (const f of files) {
         const c = app.metadataCache.getFileCache(f);
-        if (c?.frontmatter?.startDate) {
-            const d = new Date(c.frontmatter.startDate);
-            if (!isNaN(d) && d < min) min = d;
-        }
         if (c?.frontmatter?.dueDate) {
             const d = new Date(c.frontmatter.dueDate);
             if (!isNaN(d) && d > max) max = d;
         }
     }
-    // Buffer
-    min.setDate(min.getDate() - 15);
-    max.setDate(max.getDate() + 15);
+    max.setDate(max.getDate() + 30); // Buffer at end
     return { min, max };
 }
 
@@ -133,58 +139,24 @@ for (const res of resFiles) {
     }
 }
 
-// Reset
-ea.reset();
-if (settings.cleanCanvas) ea.clear();
-
-// --- DRAW TIMELINE GRID ---
-ea.style.strokeColor = "#000000";
-ea.style.fontFamily = settings.fontFamily;
-ea.style.fontSize = settings.fontSize;
-
-let loopDate = new Date(globalStart);
-loopDate.setDate(1); 
-
-// Estimate height for grid lines
-const estimatedTotalHeight = Math.max(500, objFiles.length * 400); 
-
-while (loopDate <= globalEnd) {
-    const x = getXFromDate(loopDate, globalStart);
-    
-    // Draw Grid Line
-    ea.style.strokeColor = settings.gridColor;
-    ea.style.strokeWidth = 1;
-    ea.addLine([[x, settings.startY - 30], [x, settings.startY + estimatedTotalHeight]]);
-
-    // Draw Month Label
-    const monthName = loopDate.toLocaleString('default', { month: 'short', year: '2-digit' });
-    ea.style.strokeColor = "#888888"; 
-    ea.addText(x + 5, settings.startY - 50, monthName);
-
-    loopDate.setMonth(loopDate.getMonth() + 1);
-}
-
-// Reset styles
-ea.style.backgroundColor = "transparent";
-ea.style.fillStyle = "hachure";
-ea.style.strokeWidth = 1;
-ea.style.textAlign = "left";
-ea.style.verticalAlign = "top";
-
-let currentY = settings.startY;
+// --- STEP 1: SIMULATION (Calculate Total Height) ---
+// We run the layout logic purely to find out how tall the chart is
 const maxTextWidth = settings.colWidth - (settings.padding * 2);
+let totalChartHeight = 0;
 
-// --- DRAW ROWS ---
+// Pre-calculated data structure to reuse in drawing
+const layoutData = []; 
+
 for (let i = 0; i < objFiles.length; i++) {
     const objFile = objFiles[i];
     const myResults = mapResToObj[objFile.basename] || [];
     const rowData = []; 
-    let totalRowHeight = 0;
+    let rowHeightAccumulator = 0;
 
     for (const resFile of myResults) {
         let myEntregas = mapEntToRes[resFile.basename] || [];
         
-        // --- NEW STEP: SORT BY DATE ---
+        // Sort Date
         myEntregas.sort((a, b) => {
             const dateA = a.startDate ? new Date(a.startDate).getTime() : 0;
             const dateB = b.startDate ? new Date(b.startDate).getTime() : 0;
@@ -198,11 +170,8 @@ for (let i = 0; i < objFiles.length; i++) {
             let start = entData.startDate ? new Date(entData.startDate) : new Date(globalStart);
             let end = entData.dueDate ? new Date(entData.dueDate) : new Date(start);
             
-            if (isNaN(start)) start = new Date(globalStart);
-            if (isNaN(end) || end < start) { 
-                end = new Date(start); 
-                end.setDate(end.getDate() + 5);
-            }
+            if (isNaN(start) || start < globalStart) start = new Date(globalStart);
+            if (isNaN(end) || end < start) { end = new Date(start); end.setDate(end.getDate() + 5); }
 
             const xPos = getXFromDate(start, globalStart);
             const wPx = Math.max(50, getXFromDate(end, globalStart) - xPos); 
@@ -210,12 +179,7 @@ for (let i = 0; i < objFiles.length; i++) {
             const textData = getTextHeight(entData.file.basename, wPx - (settings.padding*2));
             const hPx = Math.max(settings.minHeight, textData.height);
 
-            entLayouts.push({
-                x: xPos,
-                width: wPx,
-                height: hPx,
-                text: textData.text
-            });
+            entLayouts.push({ x: xPos, width: wPx, height: hPx, text: textData.text, file: entData.file });
             entStackHeight += hPx;
         }
         if (entLayouts.length > 0) entStackHeight += (entLayouts.length - 1) * settings.gapY;
@@ -229,44 +193,101 @@ for (let i = 0; i < objFiles.length; i++) {
             resHeight: resFinalHeight, 
             entregas: entLayouts       
         });
-        totalRowHeight += resFinalHeight;
+        rowHeightAccumulator += resFinalHeight;
     }
-    if (rowData.length > 0) totalRowHeight += (rowData.length - 1) * settings.gapY;
+    if (rowData.length > 0) rowHeightAccumulator += (rowData.length - 1) * settings.gapY;
 
     const objTextData = getTextHeight(objFile.basename, maxTextWidth);
-    const objFinalHeight = Math.max(settings.minHeight, objTextData.height, totalRowHeight);
+    const objFinalHeight = Math.max(settings.minHeight, objTextData.height, rowHeightAccumulator);
 
-    // Draw
+    // Save for drawing step
+    layoutData.push({
+        objFile: objFile,
+        objText: objTextData.text,
+        objHeight: objFinalHeight,
+        rowData: rowData
+    });
+
+    totalChartHeight += objFinalHeight + settings.gapY;
+}
+
+
+// --- STEP 2: DRAWING ---
+
+ea.reset();
+if (settings.cleanCanvas) ea.clear();
+
+// A. Draw Grid (Now using exact height)
+ea.style.strokeColor = "#000000";
+ea.style.fontFamily = settings.fontFamily;
+ea.style.fontSize = settings.fontSize;
+
+let loopDate = new Date(globalStart);
+loopDate.setDate(1); 
+
+// Grid Line Bottom Y
+const gridBottomY = settings.startY + totalChartHeight;
+
+while (loopDate <= globalEnd) {
+    const x = getXFromDate(loopDate, globalStart);
+    
+    // Grid Line
+    ea.style.strokeColor = settings.gridColor;
+    ea.style.strokeWidth = 1;
+    ea.addLine([[x, settings.startY - 30], [x, gridBottomY]]);
+
+    // Month Label
+    const monthName = loopDate.toLocaleString('default', { month: 'short', year: '2-digit' });
+    ea.style.strokeColor = "#888888"; 
+    ea.addText(x + 5, settings.startY - 50, monthName);
+
+    loopDate.setMonth(loopDate.getMonth() + 1);
+}
+
+// Reset Styles
+ea.style.backgroundColor = "transparent";
+ea.style.fillStyle = "hachure";
+ea.style.strokeWidth = 1;
+ea.style.textAlign = "left";
+ea.style.verticalAlign = "top";
+
+let currentY = settings.startY;
+
+// B. Draw Objects (Using Pre-calculated Data)
+for (let i = 0; i < layoutData.length; i++) {
+    const row = layoutData[i];
     const color = settings.colors[i % settings.colors.length];
     ea.style.strokeColor = color;
 
-    // Col 1
-    const objRectId = ea.addRect(settings.startX, currentY, settings.colWidth, objFinalHeight);
-    const objTextId = ea.addText(settings.startX + settings.padding, currentY + settings.padding, objTextData.text);
+    // 1. Objective
+    const objRectId = ea.addRect(settings.startX, currentY, settings.colWidth, row.objHeight);
+    // Use Helper for Linked Text
+    const objTextId = addLinkedText(settings.startX + settings.padding, currentY + settings.padding, row.objText, row.objFile.basename);
     ea.addToGroup([objRectId, objTextId]);
 
-    // Col 2
+    // 2. Results
     let resY = currentY;
     const resX = settings.startX + settings.colWidth + settings.gapX;
 
-    for (const resItem of rowData) {
+    for (const resItem of row.rowData) {
+        // Result Block
         const resRectId = ea.addRect(resX, resY, settings.colWidth, resItem.resHeight);
-        const resTextId = ea.addText(resX + settings.padding, resY + settings.padding, resItem.resText);
+        const resTextId = addLinkedText(resX + settings.padding, resY + settings.padding, resItem.resText, resItem.resFile.basename);
         ea.addToGroup([resRectId, resTextId]);
 
-        // Col 3 (Sorted Timeline Items)
+        // 3. Entregas (Timeline)
         let entY = resY;
         for (const entItem of resItem.entregas) {
             const entRectId = ea.addRect(entItem.x, entY, entItem.width, entItem.height);
-            const entTextId = ea.addText(entItem.x + settings.padding, entY + settings.padding, entItem.text);
+            const entTextId = addLinkedText(entItem.x + settings.padding, entY + settings.padding, entItem.text, entItem.file.basename);
             ea.addToGroup([entRectId, entTextId]);
             entY += entItem.height + settings.gapY;
         }
         resY += resItem.resHeight + settings.gapY;
     }
 
-    currentY += objFinalHeight + settings.gapY;
+    currentY += row.objHeight + settings.gapY;
 }
 
 await ea.addElementsToView(true, true, true);
-new Notice(`✅ Gantt Sorted by Date.`);
+new Notice(`✅ Linked Gantt Generated.`);
