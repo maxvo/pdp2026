@@ -63,7 +63,8 @@
               "title": "Draw Objectives.md"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -265,12 +266,12 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "dcc0862c9721e3a8",
+  "active": "1f9143e6df9aa33c",
   "lastOpenFiles": [
-    "050_agenda/050.1_daily/2026-01-23.md",
     "099_excalidraw/scripts/Draw Objectives.md.md",
-    "099_excalidraw/scripts/Draw Roadmap.md.md",
     "099_excalidraw/visao-geral-pdp.md",
+    "050_agenda/050.1_daily/2026-01-23.md",
+    "099_excalidraw/scripts/Draw Roadmap.md.md",
     "050_agenda/050.1_daily/2026-01-22.md",
     "050_agenda/050.1_daily/2026-01-21.md",
     "050_agenda/050.1_daily/2026-01-20.md",
