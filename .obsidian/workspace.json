@@ -74,9 +74,21 @@
               "icon": "excalidraw-icon",
               "title": "habilidades-vs-objetivos"
             }
+          },
+          {
+            "id": "bcd844b9a9a28589",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "099_excalidraw/Drawing 2026-01-24 15.17.09.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2026-01-24 15.17.09.excalidraw"
+            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -278,15 +290,15 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "56eb9a2c6d5f1f28",
+  "active": "bcd844b9a9a28589",
   "lastOpenFiles": [
+    "099_excalidraw/habilidades-vs-objetivos.md",
     "040_entrega/Identificar pessoas com o perfil de especialista.md",
     "040_entrega/Atualização da esteira de engenharia de analytics.md",
     "050_agenda/050.2_weekly/2026-W03.md",
     "099_excalidraw/Drawing 2026-01-24 15.17.09.excalidraw.md",
     "099_excalidraw/scripts/Draw Objectives.md.md",
     "040_entrega/Roadmap de entregas técnicas alinhadas ao negócio.md",
-    "099_excalidraw/habilidades-vs-objetivos.md",
     "099_excalidraw/roadmap.md",
     "099_excalidraw/visao-geral-pdp.md",
     "050_agenda/050.1_daily/2026-01-23.md",
