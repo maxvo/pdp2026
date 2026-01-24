@@ -1,46 +1,45 @@
-/* * Excalidraw Script: 3-Level Matrix (Production Fixed)
+/* * Excalidraw Script: Objective Matrix + Gantt Timeline
 * Description: 
-* - Configurable 'Clean Canvas' to prevent pile-ups.
-* - Debug logs for positioning.
-* - 3 Columns: Objective -> Result -> Entrega (Time-based width)
+* - Col 1 & 2: Objectives and Results (Fixed Headers)
+* - Col 3: Timeline Area (Months). Entregas placed by date.
 */
 
 // --- CONFIGURATION ---
 const settings = {
-    // 1. CLEAR CANVAS? (Set to true to wipe drawing before running)
     cleanCanvas: true, 
 
-    // 2. FOLDERS
+    // FOLDERS
     objFolder: "020_objetivo",
     resFolder: "030_resultado", 
     entFolder: "040_entrega",
 
-    // 3. STARTING POSITION (Check if these match what you want!)
+    // LAYOUT (Left Side)
     startX: 0,
-    startY: 0,
+    startY: 100,          // Moved down to make room for Month Headers
+    colWidth: 250,        // Width of Obj and Res columns
+    gapX: 20,             // Gap between Obj and Res
+    
+    // TIMELINE (Right Side)
+    timelineStartX: 600,  // Where the timeline begins (ObjWidth + ResWidth + Gaps)
+    pixelsPerDay: 2,      // Scale: Bigger number = wider timeline
+    gridColor: "#e9ecef", // Light gray for vertical month lines
 
-    // 4. DIMENSIONS
-    colWidth: 300,        
-    gapX: 50,             // Horizontal Gap
-    gapY: 10,             // Vertical Gap
+    // ROW SIZING
     padding: 10,          
-    minHeight: 60,        
+    minHeight: 50,        
+    gapY: 10,             
 
-    // 5. ENTREGA TIME SCALING
-    baseWidth: 100,       
-    pixelsPerDay: 5,      
-    defaultDuration: 5,   
-
-    // 6. STYLE
-    fontSize: 20,
+    // STYLE
+    fontSize: 16,
     fontFamily: 1,        
     colors: ["#4a6fa5", "#5c8a8a"] 
 };
 
 // --- HELPERS ---
-function cleanLink(linkValue) {
-    if (!linkValue) return "";
-    let raw = Array.isArray(linkValue) ? linkValue[0] : linkValue;
+
+function cleanLink(val) {
+    if (!val) return "";
+    let raw = Array.isArray(val) ? val[0] : val;
     if (typeof raw !== 'string') return String(raw) || "";
     return raw.replace(/\[\[|\]\]/g, "").split("|")[0];
 }
@@ -67,51 +66,66 @@ function wrapText(text, maxWidth) {
 function getTextHeight(text, maxWidth) {
     const wrapped = wrapText(text, maxWidth);
     const metrics = ea.measureText(wrapped);
-    return {
-        text: wrapped,
-        height: metrics.height + (settings.padding * 2)
-    };
+    return { text: wrapped, height: metrics.height + (settings.padding * 2) };
 }
 
-function getEntregaDimensions(itemData) {
-    let days = settings.defaultDuration;
-    if (itemData.startDate && itemData.dueDate) {
-        const start = new Date(itemData.startDate);
-        const end = new Date(itemData.dueDate);
-        if (!isNaN(start.getTime()) && !isNaN(end.getTime())) {
-            const diffTime = Math.abs(end - start);
-            days = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-            if (days < 1) days = 1; 
+// --- DATE MATH ---
+
+// 1. Find global Date boundaries
+function getGlobalDateRange(files) {
+    let min = new Date(); // Today
+    let max = new Date();
+    max.setMonth(max.getMonth() + 3); // Default to 3 months ahead if empty
+
+    let found = false;
+
+    for (const f of files) {
+        const c = app.metadataCache.getFileCache(f);
+        if (c?.frontmatter?.startDate) {
+            const d = new Date(c.frontmatter.startDate);
+            if (!isNaN(d) && d < min) min = d;
+            found = true;
+        }
+        if (c?.frontmatter?.dueDate) {
+            const d = new Date(c.frontmatter.dueDate);
+            if (!isNaN(d) && d > max) max = d;
+            found = true;
         }
     }
-    const calculatedWidth = settings.baseWidth + (days * settings.pixelsPerDay);
-    const textData = getTextHeight(itemData.file.basename, calculatedWidth - (settings.padding * 2));
-    const finalHeight = Math.max(settings.minHeight, textData.height);
+    
+    // Add buffer (15 days before and after)
+    min.setDate(min.getDate() - 15);
+    max.setDate(max.getDate() + 15);
+    
+    return { min, max };
+}
 
-    return {
-        width: calculatedWidth,
-        height: finalHeight,
-        text: textData.text
-    };
+// 2. Convert Date to X Pixel Coordinate
+function getXFromDate(dateObj, minDate) {
+    const diffTime = dateObj - minDate;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return settings.timelineStartX + (diffDays * settings.pixelsPerDay);
 }
 
 // --- MAIN LOGIC ---
 
-// 1. Files
+// 1. Load Files
 const fObj = app.vault.getAbstractFileByPath(settings.objFolder);
 const fRes = app.vault.getAbstractFileByPath(settings.resFolder);
 const fEnt = app.vault.getAbstractFileByPath(settings.entFolder);
 
-if (!fObj || !fRes || !fEnt) {
-    new Notice("❌ Error: Folders not found. Check settings.");
-    return;
-}
+if (!fObj || !fRes || !fEnt) { new Notice("❌ Error: Check folder paths."); return; }
 
 const objFiles = fObj.children.filter(f => f.hasOwnProperty('extension'));
 const resFiles = fRes.children.filter(f => f.hasOwnProperty('extension'));
 const entFiles = fEnt.children.filter(f => f.hasOwnProperty('extension'));
 
-// 2. Maps
+// 2. Calculate Timeline Bounds
+const { min: globalStart, max: globalEnd } = getGlobalDateRange(entFiles);
+const totalDays = Math.ceil((globalEnd - globalStart) / (1000 * 60 * 60 * 24));
+const timelineWidth = totalDays * settings.pixelsPerDay;
+
+// 3. Map Relationships
 const mapResToObj = {}; 
 const mapEntToRes = {}; 
 objFiles.forEach(f => mapResToObj[f.basename] = []);
@@ -120,56 +134,98 @@ resFiles.forEach(f => mapEntToRes[f.basename] = []);
 for (const ent of entFiles) {
     const cache = app.metadataCache.getFileCache(ent);
     if (cache?.frontmatter?.resultado) {
-        const targetRes = cleanLink(cache.frontmatter.resultado);
-        if (mapEntToRes[targetRes]) mapEntToRes[targetRes].push({ file: ent, ...cache.frontmatter });
+        const target = cleanLink(cache.frontmatter.resultado);
+        if (mapEntToRes[target]) mapEntToRes[target].push({ file: ent, ...cache.frontmatter });
     }
 }
 for (const res of resFiles) {
     const cache = app.metadataCache.getFileCache(res);
     if (cache?.frontmatter?.objetivo) {
-        const targetObj = cleanLink(cache.frontmatter.objetivo);
-        if (mapResToObj[targetObj]) mapResToObj[targetObj].push(res);
+        const target = cleanLink(cache.frontmatter.objetivo);
+        if (mapResToObj[target]) mapResToObj[target].push(res);
     }
 }
 
-// 3. Setup Canvas
+// 4. Reset & Draw Grid
 ea.reset();
+if (settings.cleanCanvas) ea.clear();
 
-// -> CLEAN CANVAS OPTION
-if (settings.cleanCanvas) {
-    ea.clear(); 
-}
-
-ea.style.backgroundColor = "transparent";
-ea.style.fillStyle = "hachure";
+ea.style.strokeColor = "#000000";
 ea.style.fontFamily = settings.fontFamily;
 ea.style.fontSize = settings.fontSize;
+
+// --- DRAW TIMELINE HEADER (Months) ---
+let loopDate = new Date(globalStart);
+loopDate.setDate(1); // Snap to first of month
+
+while (loopDate <= globalEnd) {
+    const x = getXFromDate(loopDate, globalStart);
+    
+    // Draw Vertical Grid Line (Full height estimate: 2000px, we can adjust later or keep it long)
+    // We'll draw it very long to cover all rows
+    ea.style.strokeColor = settings.gridColor;
+    ea.style.strokeWidth = 1;
+    ea.addLine([x, settings.startY - 30], [x, settings.startY + (objFiles.length * 500)]); // Arbitrary long length
+
+    // Draw Month Label
+    const monthName = loopDate.toLocaleString('default', { month: 'short', year: '2-digit' });
+    ea.style.strokeColor = "#888888"; // Text color
+    ea.addText(x + 5, settings.startY - 50, monthName);
+
+    // Advance 1 month
+    loopDate.setMonth(loopDate.getMonth() + 1);
+}
+
+// Reset styles for content
+ea.style.backgroundColor = "transparent";
+ea.style.fillStyle = "hachure";
+ea.style.strokeWidth = 1;
 ea.style.textAlign = "left";
 ea.style.verticalAlign = "top";
-ea.style.strokeWidth = 1;
 
 let currentY = settings.startY;
 const maxTextWidth = settings.colWidth - (settings.padding * 2);
 
-console.log("--- Starting Draw Loop ---");
-
-// 4. Loop
+// 5. Draw Rows
 for (let i = 0; i < objFiles.length; i++) {
     const objFile = objFiles[i];
     const myResults = mapResToObj[objFile.basename] || [];
     const rowData = []; 
     let totalRowHeight = 0;
 
-    // A. Calculate Heights
+    // --- Process Layout ---
     for (const resFile of myResults) {
         const myEntregas = mapEntToRes[resFile.basename] || [];
-        let entStackHeight = 0;
-        const entLayouts = [];
         
+        // Calculate Entregas using Dates
+        const entLayouts = [];
+        let entStackHeight = 0;
+
         for (const entData of myEntregas) {
-            const dims = getEntregaDimensions(entData);
-            entLayouts.push(dims);
-            entStackHeight += dims.height;
+            // Determine X and Width based on Dates
+            let start = entData.startDate ? new Date(entData.startDate) : new Date(globalStart);
+            let end = entData.dueDate ? new Date(entData.dueDate) : new Date(start);
+            
+            // Validation
+            if (isNaN(start)) start = new Date(globalStart);
+            if (isNaN(end) || end < start) { 
+                end = new Date(start); 
+                end.setDate(end.getDate() + 5); // Default 5 days
+            }
+
+            const xPos = getXFromDate(start, globalStart);
+            const wPx = Math.max(50, getXFromDate(end, globalStart) - xPos); // Min width 50px
+
+            const textData = getTextHeight(entData.file.basename, wPx - (settings.padding*2));
+            const hPx = Math.max(settings.minHeight, textData.height);
+
+            entLayouts.push({
+                x: xPos,
+                width: wPx,
+                height: hPx,
+                text: textData.text
+            });
+            entStackHeight += hPx;
         }
         if (entLayouts.length > 0) entStackHeight += (entLayouts.length - 1) * settings.gapY;
 
@@ -189,35 +245,32 @@ for (let i = 0; i < objFiles.length; i++) {
     const objTextData = getTextHeight(objFile.basename, maxTextWidth);
     const objFinalHeight = Math.max(settings.minHeight, objTextData.height, totalRowHeight);
 
-    // DEBUG: Print Position
-    console.log(`Row ${i}: Y=${currentY}, Height=${objFinalHeight}`);
-
-    // B. Draw
+    // --- Draw ---
     const color = settings.colors[i % settings.colors.length];
     ea.style.strokeColor = color;
 
-    // Draw Objective
+    // Col 1: Objective
     const objRectId = ea.addRect(settings.startX, currentY, settings.colWidth, objFinalHeight);
     const objTextId = ea.addText(settings.startX + settings.padding, currentY + settings.padding, objTextData.text);
     ea.addToGroup([objRectId, objTextId]);
 
-    // Draw Results & Entregas
+    // Col 2: Result
     let resY = currentY;
     const resX = settings.startX + settings.colWidth + settings.gapX;
-    const entX = resX + settings.colWidth + settings.gapX;
 
     for (const resItem of rowData) {
-        // Result
         const resRectId = ea.addRect(resX, resY, settings.colWidth, resItem.resHeight);
         const resTextId = ea.addText(resX + settings.padding, resY + settings.padding, resItem.resText);
         ea.addToGroup([resRectId, resTextId]);
 
-        // Entregas
+        // Col 3: Timeline Entregas
         let entY = resY;
         for (const entItem of resItem.entregas) {
-            const entRectId = ea.addRect(entX, entY, entItem.width, entItem.height);
-            const entTextId = ea.addText(entX + settings.padding, entY + settings.padding, entItem.text);
+            // Use Calculated X Position (Date Based)
+            const entRectId = ea.addRect(entItem.x, entY, entItem.width, entItem.height);
+            const entTextId = ea.addText(entItem.x + settings.padding, entY + settings.padding, entItem.text);
             ea.addToGroup([entRectId, entTextId]);
+            
             entY += entItem.height + settings.gapY;
         }
         resY += resItem.resHeight + settings.gapY;
@@ -227,4 +280,4 @@ for (let i = 0; i < objFiles.length; i++) {
 }
 
 await ea.addElementsToView(true, true, true);
-new Notice(`✅ Drawn ${objFiles.length} Rows. Check Console for Y-coords.`);
+new Notice(`✅ Gantt Timeline Generated.`);
