@@ -32,7 +32,7 @@ const settings = {
 
     // STYLE
     fontSize: 16,
-    fontFamily: 1,        
+    fontFamily: 2,        
     colors: ["#4a6fa5", "#5c8a8a"] 
 };
 

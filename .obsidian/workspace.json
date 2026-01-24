@@ -39,12 +39,14 @@
             "id": "8bbe01a7bdcd102f",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "099_excalidraw/Drawing 2026-01-24 15.17.09.excalidraw.md"
+                "file": "040_entrega/Identificar pessoas com o perfil de especialista.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "excalidraw-icon",
-              "title": "Drawing 2026-01-24 15.17.09.excalidraw"
+              "icon": "lucide-file",
+              "title": "Identificar pessoas com o perfil de especialista"
             }
           },
           {
@@ -88,7 +90,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -290,12 +292,13 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "7049a52206b97be8",
+  "active": "8bbe01a7bdcd102f",
   "lastOpenFiles": [
-    "099_excalidraw/habilidades-vs-objetivos.md",
+    "040_entrega/Roadmap de entregas técnicas alinhadas ao negócio.md",
     "040_entrega/Identificar pessoas com o perfil de especialista.md",
     "099_excalidraw/Drawing 2026-01-24 15.17.09.excalidraw.md",
     "099_excalidraw/scripts/Draw Objectives.md.md",
+    "099_excalidraw/habilidades-vs-objetivos.md",
     "099_excalidraw/roadmap.md",
     "099_excalidraw/visao-geral-pdp.md",
     "050_agenda/050.2_weekly/2026-W03.md",
@@ -317,7 +320,6 @@
     "050_agenda/050.2_weekly/2026-W02.md",
     "050_agenda/050.1_daily/2026-01-06.md",
     "050_agenda/050.1_daily/2026-01-05.md",
-    "050_agenda/050.1_daily/2026-01-07.md",
     "050_agenda/050.5_yearly",
     "050_agenda/050.4_quarterly",
     "050_agenda/050.3_monthly",
