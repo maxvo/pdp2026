@@ -55,16 +55,15 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "099_excalidraw/scripts/Draw Roadmap.md.md",
+                "file": "099_excalidraw/scripts/Draw Objectives.md.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Draw Roadmap.md"
+              "title": "Draw Objectives.md"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -266,10 +265,12 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "1f9143e6df9aa33c",
+  "active": "dcc0862c9721e3a8",
   "lastOpenFiles": [
-    "099_excalidraw/visao-geral-pdp.md",
     "050_agenda/050.1_daily/2026-01-23.md",
+    "099_excalidraw/scripts/Draw Objectives.md.md",
+    "099_excalidraw/scripts/Draw Roadmap.md.md",
+    "099_excalidraw/visao-geral-pdp.md",
     "050_agenda/050.1_daily/2026-01-22.md",
     "050_agenda/050.1_daily/2026-01-21.md",
     "050_agenda/050.1_daily/2026-01-20.md",
@@ -292,8 +293,6 @@
     "045_overhead/Especialista daily banking.md",
     "045_overhead/Conversas de carreira.md",
     "040_entrega/Identificar pessoas com o perfil de especialista.md",
-    "099_excalidraw/scripts/Draw Objectives.md.md",
-    "045_overhead/Especialista do banco.md",
     "050_agenda/050.5_yearly",
     "050_agenda/050.4_quarterly",
     "050_agenda/050.3_monthly",
