@@ -21,7 +21,7 @@ const settings = {
     
     // TIMELINE (Right Side)
     timelineStartX: 600,  
-    pixelsPerDay: 2,      // Scale (increase to stretch timeline)
+    pixelsPerDay: 10,      // Scale (increase to stretch timeline)
     gridColor: "#e9ecef", 
 
     // ROW SIZING
