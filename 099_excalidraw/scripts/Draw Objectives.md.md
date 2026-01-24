@@ -1,51 +1,38 @@
-/* * Excalidraw Script: 3-Level Matrix (Obj -> Res -> Entrega)
-* Description: 
-* - Column 1: Objectives (Auto-height)
-* - Column 2: Results (Auto-height based on Entregas)
-* - Column 3: Entregas (Width based on Start/Due Date duration)
+/* * Excalidraw Script: 3-Level Matrix (DEBUG MODE)
+* Description: Includes logs to find why nothing is drawing.
 */
 
 // --- CONFIGURATION ---
 const settings = {
-    // Folders
     objFolder: "020_objetivo",
-    resFolder: "030_resultado", // Check if it is singular or plural in your vault
+    resFolder: "030_resultado", // Check this name carefully!
     entFolder: "040_entrega",
 
-    // Layout
-    colWidth: 300,        // Standard width for Obj and Res
-    gapX: 50,             // Horizontal gap between columns
-    gapY: 10,             // Vertical gap between items
+    colWidth: 300,        
+    gapX: 50,             
+    gapY: 10,             
     padding: 10,          
     minHeight: 60,        
     
-    // Time/Size Configuration for "Entrega"
-    baseWidth: 100,       // Minimum width for an Entrega
-    pixelsPerDay: 5,      // How much width to add per day of duration
-    defaultDuration: 5,   // If dates are missing, assume this many days
+    baseWidth: 100,       
+    pixelsPerDay: 5,      
+    defaultDuration: 5,   
 
-    // Font
     fontSize: 20,
-    fontFamily: 1, // 1: Hand, 2: Normal, 3: Code
+    fontFamily: 1, 
 
-    // Colors (Alternating by Objective Row)
-    colors: [
-        "#4a6fa5", // Muted Slate Blue
-        "#5c8a8a"  // Muted Sage Teal
-    ]
+    colors: ["#4a6fa5", "#5c8a8a"]
 };
 
 // --- HELPERS ---
-
-// 1. Clean Link ([[Link]] -> Link)
 function cleanLink(linkValue) {
     if (!linkValue) return "";
     let raw = Array.isArray(linkValue) ? linkValue[0] : linkValue;
     if (typeof raw !== 'string') return String(raw) || "";
+    // Remove brackets and alias
     return raw.replace(/\[\[|\]\]/g, "").split("|")[0];
 }
 
-// 2. Word Wrap
 function wrapText(text, maxWidth) {
     if (!text) return "";
     const words = text.split(" ");
@@ -65,7 +52,6 @@ function wrapText(text, maxWidth) {
     return lines.join("\n");
 }
 
-// 3. Get Text Height
 function getTextHeight(text, maxWidth) {
     const wrapped = wrapText(text, maxWidth);
     const metrics = ea.measureText(wrapped);
@@ -75,27 +61,23 @@ function getTextHeight(text, maxWidth) {
     };
 }
 
-// 4. Calculate Duration & Width
-function getEntregaDimensions(frontmatter) {
+function getEntregaDimensions(itemData) {
     let days = settings.defaultDuration;
     
-    if (frontmatter && frontmatter.startDate && frontmatter.dueDate) {
-        const start = new Date(frontmatter.startDate);
-        const end = new Date(frontmatter.dueDate);
+    // Check for start/due dates
+    if (itemData.startDate && itemData.dueDate) {
+        const start = new Date(itemData.startDate);
+        const end = new Date(itemData.dueDate);
         
-        if (!isNaN(start) && !isNaN(end)) {
-            // Difference in time / milliseconds in a day
+        if (!isNaN(start.getTime()) && !isNaN(end.getTime())) {
             const diffTime = Math.abs(end - start);
             days = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-            if (days < 1) days = 1; // Minimum 1 day
+            if (days < 1) days = 1; 
         }
     }
 
-    // Width Calculation: Base + (Days * Multiplier)
     const calculatedWidth = settings.baseWidth + (days * settings.pixelsPerDay);
-    
-    // We still need to wrap text based on this new width
-    const textData = getTextHeight(frontmatter.file.basename, calculatedWidth - (settings.padding * 2));
+    const textData = getTextHeight(itemData.file.basename, calculatedWidth - (settings.padding * 2));
     const finalHeight = Math.max(settings.minHeight, textData.height);
 
     return {
@@ -106,54 +88,81 @@ function getEntregaDimensions(frontmatter) {
     };
 }
 
-
 // --- MAIN LOGIC ---
 
-// 1. Get Files
+console.log("--- Starting Excalidraw Script ---");
+
+// 1. Get Files & Validate Folders
 const fObj = app.vault.getAbstractFileByPath(settings.objFolder);
 const fRes = app.vault.getAbstractFileByPath(settings.resFolder);
 const fEnt = app.vault.getAbstractFileByPath(settings.entFolder);
 
-if (!fObj || !fRes || !fEnt) {
-    new Notice("Error: Verify folder paths.");
-    return;
-}
+if (!fObj) { new Notice(`Error: Folder "${settings.objFolder}" not found`); return; }
+if (!fRes) { new Notice(`Error: Folder "${settings.resFolder}" not found`); return; }
+if (!fEnt) { new Notice(`Error: Folder "${settings.entFolder}" not found`); return; }
 
 const objFiles = fObj.children.filter(f => f.hasOwnProperty('extension'));
 const resFiles = fRes.children.filter(f => f.hasOwnProperty('extension'));
 const entFiles = fEnt.children.filter(f => f.hasOwnProperty('extension'));
 
-// 2. Build Hierarchy Maps
-// Structure: Objective -> [Results] -> [Entregas]
-const mapResToObj = {}; // Key: ObjName, Value: [ResFiles]
-const mapEntToRes = {}; // Key: ResName, Value: [EntFiles]
+console.log(`Files Found -> Obj: ${objFiles.length}, Res: ${resFiles.length}, Ent: ${entFiles.length}`);
+new Notice(`Found: ${objFiles.length} Objectives, ${resFiles.length} Results, ${entFiles.length} Deliverables`);
 
-// Initialize Maps
+// 2. Build Maps
+const mapResToObj = {}; 
+const mapEntToRes = {}; 
+
 objFiles.forEach(f => mapResToObj[f.basename] = []);
 resFiles.forEach(f => mapEntToRes[f.basename] = []);
 
-// Map Deliverables (Entregas) to Results
+// Process Entregas (Deliverables)
+let entCount = 0;
 for (const ent of entFiles) {
     const cache = app.metadataCache.getFileCache(ent);
     if (cache?.frontmatter?.resultado) {
         const targetRes = cleanLink(cache.frontmatter.resultado);
+        
+        // Debug Log
+        console.log(`Entrega: "${ent.basename}" links to Result: "${targetRes}"`);
+
         if (mapEntToRes[targetRes]) {
-            // Attach file object to frontmatter for easier access later
-            if(!cache.frontmatter.file) cache.frontmatter.file = ent; 
-            mapEntToRes[targetRes].push(cache.frontmatter);
+            // Store file reference + all frontmatter data safely
+            mapEntToRes[targetRes].push({
+                file: ent, 
+                ...cache.frontmatter
+            });
+            entCount++;
+        } else {
+            console.warn(`Link Broken: Result "${targetRes}" not found for Entrega "${ent.basename}"`);
         }
+    } else {
+        console.warn(`Skipped: "${ent.basename}" has no 'resultado' property`);
     }
 }
 
-// Map Results to Objectives
+// Process Results
+let resCount = 0;
 for (const res of resFiles) {
     const cache = app.metadataCache.getFileCache(res);
     if (cache?.frontmatter?.objetivo) {
         const targetObj = cleanLink(cache.frontmatter.objetivo);
+        
+        console.log(`Result: "${res.basename}" links to Objective: "${targetObj}"`);
+
         if (mapResToObj[targetObj]) {
             mapResToObj[targetObj].push(res);
+            resCount++;
+        } else {
+             console.warn(`Link Broken: Objective "${targetObj}" not found for Result "${res.basename}"`);
         }
     }
+}
+
+new Notice(`Mapped ${resCount} Results and ${entCount} Deliverables.`);
+
+if (objFiles.length === 0) {
+    new Notice("No Objectives found. Exiting.");
+    return;
 }
 
 // 3. Draw
@@ -169,20 +178,16 @@ ea.style.strokeWidth = 1;
 let currentY = settings.startY;
 const maxTextWidth = settings.colWidth - (settings.padding * 2);
 
-// LOOP: Objectives (Level 1)
 for (let i = 0; i < objFiles.length; i++) {
     const objFile = objFiles[i];
     const myResults = mapResToObj[objFile.basename] || [];
 
-    // --- CALCULATE HEIGHTS (Bottom-Up) ---
-    const rowData = []; // Will store all pre-calculated layout data for this row
+    const rowData = []; 
     let totalRowHeight = 0;
 
-    // Process Results for this Objective
     for (const resFile of myResults) {
         const myEntregas = mapEntToRes[resFile.basename] || [];
         
-        // A. Calculate Entregas Stack Height (Level 3)
         let entStackHeight = 0;
         const entLayouts = [];
         
@@ -191,40 +196,35 @@ for (let i = 0; i < objFiles.length; i++) {
             entLayouts.push(dims);
             entStackHeight += dims.height;
         }
-        // Add gaps for entrega stack
         if (entLayouts.length > 0) entStackHeight += (entLayouts.length - 1) * settings.gapY;
 
-        // B. Calculate Result Height (Level 2)
-        // Must be at least as tall as its text, AND as tall as the Entregas stack
         const resTextData = getTextHeight(resFile.basename, maxTextWidth);
         const resFinalHeight = Math.max(settings.minHeight, resTextData.height, entStackHeight);
 
         rowData.push({
             resFile: resFile,
             resText: resTextData.text,
-            resHeight: resFinalHeight, // The height of the Result Block
-            entregas: entLayouts       // List of pre-calculated deliverable dimensions
+            resHeight: resFinalHeight, 
+            entregas: entLayouts       
         });
 
         totalRowHeight += resFinalHeight;
     }
-    // Add gaps for result stack
     if (rowData.length > 0) totalRowHeight += (rowData.length - 1) * settings.gapY;
 
-    // C. Calculate Objective Height (Level 1)
     const objTextData = getTextHeight(objFile.basename, maxTextWidth);
     const objFinalHeight = Math.max(settings.minHeight, objTextData.height, totalRowHeight);
 
-    // --- DRAWING ---
+    // --- DRAW ---
     const color = settings.colors[i % settings.colors.length];
     ea.style.strokeColor = color;
 
-    // 1. Draw Objective
+    // Col 1
     const objRectId = ea.addRect(settings.startX, currentY, settings.colWidth, objFinalHeight);
     const objTextId = ea.addText(settings.startX + settings.padding, currentY + settings.padding, objTextData.text);
     ea.addToGroup([objRectId, objTextId]);
 
-    // 2. Draw Results & Entregas
+    // Col 2 & 3
     let resY = currentY;
     const resX = settings.startX + settings.colWidth + settings.gapX;
     const entX = resX + settings.colWidth + settings.gapX;
@@ -235,13 +235,12 @@ for (let i = 0; i < objFiles.length; i++) {
         const resTextId = ea.addText(resX + settings.padding, resY + settings.padding, resItem.resText);
         ea.addToGroup([resRectId, resTextId]);
 
-        // Draw Entregas (Stacked next to this Result)
+        // Draw Entregas
         let entY = resY;
         for (const entItem of resItem.entregas) {
             const entRectId = ea.addRect(entX, entY, entItem.width, entItem.height);
             const entTextId = ea.addText(entX + settings.padding, entY + settings.padding, entItem.text);
             ea.addToGroup([entRectId, entTextId]);
-            
             entY += entItem.height + settings.gapY;
         }
 
@@ -252,4 +251,5 @@ for (let i = 0; i < objFiles.length; i++) {
 }
 
 await ea.addElementsToView(true, true, true);
-new Notice(`Generated 3-Column Matrix`);
+new Notice("Drawing complete.");
+console.log("--- End Excalidraw Script ---");
