@@ -1,38 +1,46 @@
-/* * Excalidraw Script: 3-Level Matrix (DEBUG MODE)
-* Description: Includes logs to find why nothing is drawing.
+/* * Excalidraw Script: Strategic Matrix (Obj > Res > Entrega)
+* Description: Generates a 3-level hierarchy. 
+* - Handles Results with missing Entregas (draws Result only).
+* - Auto-scales heights based on content.
+* - Auto-scales Entrega width based on duration.
 */
 
 // --- CONFIGURATION ---
 const settings = {
+    // 1. Folder Paths (Case Sensitive!)
     objFolder: "020_objetivo",
-    resFolder: "030_resultado", // Check this name carefully!
+    resFolder: "030_resultado", 
     entFolder: "040_entrega",
 
-    colWidth: 300,        
-    gapX: 50,             
-    gapY: 10,             
-    padding: 10,          
-    minHeight: 60,        
+    // 2. Layout Dimensions
+    colWidth: 300,        // Width of Obj and Res columns
+    gapX: 50,             // Horizontal space between columns
+    gapY: 10,             // Vertical space between blocks
+    padding: 10,          // Text padding
+    minHeight: 60,        // Minimum height for any block
     
-    baseWidth: 100,       
-    pixelsPerDay: 5,      
-    defaultDuration: 5,   
+    // 3. Time Visualization (Entrega Width)
+    baseWidth: 100,       // Minimum width (for 1 day or missing dates)
+    pixelsPerDay: 5,      // Width added per day
+    defaultDuration: 5,   // Fallback if dates are missing
 
+    // 4. Style
     fontSize: 20,
-    fontFamily: 1, 
-
-    colors: ["#4a6fa5", "#5c8a8a"]
+    fontFamily: 1,        // 1:Hand, 2:Normal, 3:Code
+    colors: ["#4a6fa5", "#5c8a8a"] // Alternating row colors
 };
 
-// --- HELPERS ---
+// --- HELPER FUNCTIONS ---
+
+// Cleans [[WikiLinks]] or returns raw text
 function cleanLink(linkValue) {
     if (!linkValue) return "";
     let raw = Array.isArray(linkValue) ? linkValue[0] : linkValue;
     if (typeof raw !== 'string') return String(raw) || "";
-    // Remove brackets and alias
     return raw.replace(/\[\[|\]\]/g, "").split("|")[0];
 }
 
+// Wraps text to fit inside the box
 function wrapText(text, maxWidth) {
     if (!text) return "";
     const words = text.split(" ");
@@ -52,6 +60,7 @@ function wrapText(text, maxWidth) {
     return lines.join("\n");
 }
 
+// Calculates text height
 function getTextHeight(text, maxWidth) {
     const wrapped = wrapText(text, maxWidth);
     const metrics = ea.measureText(wrapped);
@@ -61,10 +70,10 @@ function getTextHeight(text, maxWidth) {
     };
 }
 
+// Calculates width/height for Deliverables based on dates
 function getEntregaDimensions(itemData) {
     let days = settings.defaultDuration;
     
-    // Check for start/due dates
     if (itemData.startDate && itemData.dueDate) {
         const start = new Date(itemData.startDate);
         const end = new Date(itemData.dueDate);
@@ -83,89 +92,57 @@ function getEntregaDimensions(itemData) {
     return {
         width: calculatedWidth,
         height: finalHeight,
-        text: textData.text,
-        days: days
+        text: textData.text
     };
 }
 
-// --- MAIN LOGIC ---
+// --- MAIN EXECUTION ---
 
-console.log("--- Starting Excalidraw Script ---");
-
-// 1. Get Files & Validate Folders
+// 1. Validate Folders
 const fObj = app.vault.getAbstractFileByPath(settings.objFolder);
 const fRes = app.vault.getAbstractFileByPath(settings.resFolder);
 const fEnt = app.vault.getAbstractFileByPath(settings.entFolder);
 
-if (!fObj) { new Notice(`Error: Folder "${settings.objFolder}" not found`); return; }
-if (!fRes) { new Notice(`Error: Folder "${settings.resFolder}" not found`); return; }
-if (!fEnt) { new Notice(`Error: Folder "${settings.entFolder}" not found`); return; }
+if (!fObj || !fRes || !fEnt) {
+    new Notice("❌ Error: One or more folders not found. Check settings.");
+    return;
+}
 
 const objFiles = fObj.children.filter(f => f.hasOwnProperty('extension'));
 const resFiles = fRes.children.filter(f => f.hasOwnProperty('extension'));
 const entFiles = fEnt.children.filter(f => f.hasOwnProperty('extension'));
 
-console.log(`Files Found -> Obj: ${objFiles.length}, Res: ${resFiles.length}, Ent: ${entFiles.length}`);
-new Notice(`Found: ${objFiles.length} Objectives, ${resFiles.length} Results, ${entFiles.length} Deliverables`);
-
-// 2. Build Maps
+// 2. Map Relationships
+// We pre-fill maps to ensure even empty results exist in the system
 const mapResToObj = {}; 
 const mapEntToRes = {}; 
 
 objFiles.forEach(f => mapResToObj[f.basename] = []);
 resFiles.forEach(f => mapEntToRes[f.basename] = []);
 
-// Process Entregas (Deliverables)
-let entCount = 0;
+// Map Deliverables -> Results
 for (const ent of entFiles) {
     const cache = app.metadataCache.getFileCache(ent);
     if (cache?.frontmatter?.resultado) {
         const targetRes = cleanLink(cache.frontmatter.resultado);
-        
-        // Debug Log
-        console.log(`Entrega: "${ent.basename}" links to Result: "${targetRes}"`);
-
         if (mapEntToRes[targetRes]) {
-            // Store file reference + all frontmatter data safely
-            mapEntToRes[targetRes].push({
-                file: ent, 
-                ...cache.frontmatter
-            });
-            entCount++;
-        } else {
-            console.warn(`Link Broken: Result "${targetRes}" not found for Entrega "${ent.basename}"`);
+            mapEntToRes[targetRes].push({ file: ent, ...cache.frontmatter });
         }
-    } else {
-        console.warn(`Skipped: "${ent.basename}" has no 'resultado' property`);
     }
 }
 
-// Process Results
-let resCount = 0;
+// Map Results -> Objectives
 for (const res of resFiles) {
     const cache = app.metadataCache.getFileCache(res);
     if (cache?.frontmatter?.objetivo) {
         const targetObj = cleanLink(cache.frontmatter.objetivo);
-        
-        console.log(`Result: "${res.basename}" links to Objective: "${targetObj}"`);
-
         if (mapResToObj[targetObj]) {
             mapResToObj[targetObj].push(res);
-            resCount++;
-        } else {
-             console.warn(`Link Broken: Objective "${targetObj}" not found for Result "${res.basename}"`);
         }
     }
 }
 
-new Notice(`Mapped ${resCount} Results and ${entCount} Deliverables.`);
-
-if (objFiles.length === 0) {
-    new Notice("No Objectives found. Exiting.");
-    return;
-}
-
-// 3. Draw
+// 3. Initialize Excalidraw
 ea.reset();
 ea.style.backgroundColor = "transparent";
 ea.style.fillStyle = "hachure";
@@ -178,19 +155,21 @@ ea.style.strokeWidth = 1;
 let currentY = settings.startY;
 const maxTextWidth = settings.colWidth - (settings.padding * 2);
 
+// 4. Iterate Objectives (Rows)
 for (let i = 0; i < objFiles.length; i++) {
     const objFile = objFiles[i];
     const myResults = mapResToObj[objFile.basename] || [];
-
     const rowData = []; 
     let totalRowHeight = 0;
 
+    // --- Calculate Layout (Bottom-Up) ---
     for (const resFile of myResults) {
-        const myEntregas = mapEntToRes[resFile.basename] || [];
+        const myEntregas = mapEntToRes[resFile.basename] || []; // Returns empty array if no deliveries
         
         let entStackHeight = 0;
         const entLayouts = [];
         
+        // Calculate Entregas Stack (Skipped if myEntregas is empty)
         for (const entData of myEntregas) {
             const dims = getEntregaDimensions(entData);
             entLayouts.push(dims);
@@ -198,6 +177,8 @@ for (let i = 0; i < objFiles.length; i++) {
         }
         if (entLayouts.length > 0) entStackHeight += (entLayouts.length - 1) * settings.gapY;
 
+        // Result Height Calculation
+        // If entStackHeight is 0, it falls back to minHeight or textHeight.
         const resTextData = getTextHeight(resFile.basename, maxTextWidth);
         const resFinalHeight = Math.max(settings.minHeight, resTextData.height, entStackHeight);
 
@@ -210,21 +191,23 @@ for (let i = 0; i < objFiles.length; i++) {
 
         totalRowHeight += resFinalHeight;
     }
+    // Add gaps between Results
     if (rowData.length > 0) totalRowHeight += (rowData.length - 1) * settings.gapY;
 
+    // Objective Height Calculation
     const objTextData = getTextHeight(objFile.basename, maxTextWidth);
     const objFinalHeight = Math.max(settings.minHeight, objTextData.height, totalRowHeight);
 
-    // --- DRAW ---
+    // --- Draw Elements ---
     const color = settings.colors[i % settings.colors.length];
     ea.style.strokeColor = color;
 
-    // Col 1
+    // Col 1: Objective
     const objRectId = ea.addRect(settings.startX, currentY, settings.colWidth, objFinalHeight);
     const objTextId = ea.addText(settings.startX + settings.padding, currentY + settings.padding, objTextData.text);
     ea.addToGroup([objRectId, objTextId]);
 
-    // Col 2 & 3
+    // Col 2 & 3: Results & Entregas
     let resY = currentY;
     const resX = settings.startX + settings.colWidth + settings.gapX;
     const entX = resX + settings.colWidth + settings.gapX;
@@ -235,7 +218,7 @@ for (let i = 0; i < objFiles.length; i++) {
         const resTextId = ea.addText(resX + settings.padding, resY + settings.padding, resItem.resText);
         ea.addToGroup([resRectId, resTextId]);
 
-        // Draw Entregas
+        // Draw Entregas (Only if they exist)
         let entY = resY;
         for (const entItem of resItem.entregas) {
             const entRectId = ea.addRect(entX, entY, entItem.width, entItem.height);
@@ -251,5 +234,4 @@ for (let i = 0; i < objFiles.length; i++) {
 }
 
 await ea.addElementsToView(true, true, true);
-new Notice("Drawing complete.");
-console.log("--- End Excalidraw Script ---");
+new Notice(`✅ Matrix Generated: ${objFiles.length} Objectives.`);
