@@ -1,7 +1,7 @@
-/* * Excalidraw Script: Objective Matrix + Gantt Timeline
+/* * Excalidraw Script: Objective Matrix + Gantt Timeline (FIXED)
 * Description: 
-* - Col 1 & 2: Objectives and Results (Fixed Headers)
-* - Col 3: Timeline Area (Months). Entregas placed by date.
+* - Corrected 'ea.addLine' syntax error.
+* - Generates timeline grid and places deliverables by date.
 */
 
 // --- CONFIGURATION ---
@@ -15,14 +15,14 @@ const settings = {
 
     // LAYOUT (Left Side)
     startX: 0,
-    startY: 100,          // Moved down to make room for Month Headers
-    colWidth: 250,        // Width of Obj and Res columns
-    gapX: 20,             // Gap between Obj and Res
+    startY: 100,          // Moved down for headers
+    colWidth: 250,        
+    gapX: 20,             
     
     // TIMELINE (Right Side)
-    timelineStartX: 600,  // Where the timeline begins (ObjWidth + ResWidth + Gaps)
-    pixelsPerDay: 2,      // Scale: Bigger number = wider timeline
-    gridColor: "#e9ecef", // Light gray for vertical month lines
+    timelineStartX: 600,  
+    pixelsPerDay: 2,      // Scale (increase to stretch timeline)
+    gridColor: "#e9ecef", 
 
     // ROW SIZING
     padding: 10,          
@@ -36,7 +36,6 @@ const settings = {
 };
 
 // --- HELPERS ---
-
 function cleanLink(val) {
     if (!val) return "";
     let raw = Array.isArray(val) ? val[0] : val;
@@ -70,15 +69,12 @@ function getTextHeight(text, maxWidth) {
 }
 
 // --- DATE MATH ---
-
-// 1. Find global Date boundaries
 function getGlobalDateRange(files) {
-    let min = new Date(); // Today
+    let min = new Date(); 
     let max = new Date();
-    max.setMonth(max.getMonth() + 3); // Default to 3 months ahead if empty
+    max.setMonth(max.getMonth() + 3); 
 
     let found = false;
-
     for (const f of files) {
         const c = app.metadataCache.getFileCache(f);
         if (c?.frontmatter?.startDate) {
@@ -92,15 +88,12 @@ function getGlobalDateRange(files) {
             found = true;
         }
     }
-    
-    // Add buffer (15 days before and after)
+    // Add 15 days buffer
     min.setDate(min.getDate() - 15);
     max.setDate(max.getDate() + 15);
-    
     return { min, max };
 }
 
-// 2. Convert Date to X Pixel Coordinate
 function getXFromDate(dateObj, minDate) {
     const diffTime = dateObj - minDate;
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
@@ -109,7 +102,6 @@ function getXFromDate(dateObj, minDate) {
 
 // --- MAIN LOGIC ---
 
-// 1. Load Files
 const fObj = app.vault.getAbstractFileByPath(settings.objFolder);
 const fRes = app.vault.getAbstractFileByPath(settings.resFolder);
 const fEnt = app.vault.getAbstractFileByPath(settings.entFolder);
@@ -120,12 +112,9 @@ const objFiles = fObj.children.filter(f => f.hasOwnProperty('extension'));
 const resFiles = fRes.children.filter(f => f.hasOwnProperty('extension'));
 const entFiles = fEnt.children.filter(f => f.hasOwnProperty('extension'));
 
-// 2. Calculate Timeline Bounds
 const { min: globalStart, max: globalEnd } = getGlobalDateRange(entFiles);
-const totalDays = Math.ceil((globalEnd - globalStart) / (1000 * 60 * 60 * 24));
-const timelineWidth = totalDays * settings.pixelsPerDay;
 
-// 3. Map Relationships
+// Map Relationships
 const mapResToObj = {}; 
 const mapEntToRes = {}; 
 objFiles.forEach(f => mapResToObj[f.basename] = []);
@@ -146,33 +135,39 @@ for (const res of resFiles) {
     }
 }
 
-// 4. Reset & Draw Grid
+// Reset
 ea.reset();
 if (settings.cleanCanvas) ea.clear();
 
+// --- DRAW TIMELINE GRID ---
 ea.style.strokeColor = "#000000";
 ea.style.fontFamily = settings.fontFamily;
 ea.style.fontSize = settings.fontSize;
 
-// --- DRAW TIMELINE HEADER (Months) ---
 let loopDate = new Date(globalStart);
-loopDate.setDate(1); // Snap to first of month
+loopDate.setDate(1); // Snap to 1st
+
+// Calculate approximate total height for grid lines
+const estimatedTotalHeight = Math.max(500, objFiles.length * 300); 
 
 while (loopDate <= globalEnd) {
     const x = getXFromDate(loopDate, globalStart);
     
-    // Draw Vertical Grid Line (Full height estimate: 2000px, we can adjust later or keep it long)
-    // We'll draw it very long to cover all rows
+    // 1. Draw Grid Line (FIXED SYNTAX)
     ea.style.strokeColor = settings.gridColor;
     ea.style.strokeWidth = 1;
-    ea.addLine([x, settings.startY - 30], [x, settings.startY + (objFiles.length * 500)]); // Arbitrary long length
+    
+    // Note the double brackets [[x,y], [x,y]]
+    ea.addLine([
+        [x, settings.startY - 30], 
+        [x, settings.startY + estimatedTotalHeight]
+    ]);
 
-    // Draw Month Label
+    // 2. Draw Month Label
     const monthName = loopDate.toLocaleString('default', { month: 'short', year: '2-digit' });
-    ea.style.strokeColor = "#888888"; // Text color
+    ea.style.strokeColor = "#888888"; 
     ea.addText(x + 5, settings.startY - 50, monthName);
 
-    // Advance 1 month
     loopDate.setMonth(loopDate.getMonth() + 1);
 }
 
@@ -186,35 +181,31 @@ ea.style.verticalAlign = "top";
 let currentY = settings.startY;
 const maxTextWidth = settings.colWidth - (settings.padding * 2);
 
-// 5. Draw Rows
+// --- DRAW ROWS ---
 for (let i = 0; i < objFiles.length; i++) {
     const objFile = objFiles[i];
     const myResults = mapResToObj[objFile.basename] || [];
     const rowData = []; 
     let totalRowHeight = 0;
 
-    // --- Process Layout ---
     for (const resFile of myResults) {
         const myEntregas = mapEntToRes[resFile.basename] || [];
         
-        // Calculate Entregas using Dates
         const entLayouts = [];
         let entStackHeight = 0;
 
         for (const entData of myEntregas) {
-            // Determine X and Width based on Dates
             let start = entData.startDate ? new Date(entData.startDate) : new Date(globalStart);
             let end = entData.dueDate ? new Date(entData.dueDate) : new Date(start);
             
-            // Validation
             if (isNaN(start)) start = new Date(globalStart);
             if (isNaN(end) || end < start) { 
                 end = new Date(start); 
-                end.setDate(end.getDate() + 5); // Default 5 days
+                end.setDate(end.getDate() + 5);
             }
 
             const xPos = getXFromDate(start, globalStart);
-            const wPx = Math.max(50, getXFromDate(end, globalStart) - xPos); // Min width 50px
+            const wPx = Math.max(50, getXFromDate(end, globalStart) - xPos); 
 
             const textData = getTextHeight(entData.file.basename, wPx - (settings.padding*2));
             const hPx = Math.max(settings.minHeight, textData.height);
@@ -245,16 +236,16 @@ for (let i = 0; i < objFiles.length; i++) {
     const objTextData = getTextHeight(objFile.basename, maxTextWidth);
     const objFinalHeight = Math.max(settings.minHeight, objTextData.height, totalRowHeight);
 
-    // --- Draw ---
+    // Draw
     const color = settings.colors[i % settings.colors.length];
     ea.style.strokeColor = color;
 
-    // Col 1: Objective
+    // Col 1
     const objRectId = ea.addRect(settings.startX, currentY, settings.colWidth, objFinalHeight);
     const objTextId = ea.addText(settings.startX + settings.padding, currentY + settings.padding, objTextData.text);
     ea.addToGroup([objRectId, objTextId]);
 
-    // Col 2: Result
+    // Col 2
     let resY = currentY;
     const resX = settings.startX + settings.colWidth + settings.gapX;
 
@@ -263,14 +254,12 @@ for (let i = 0; i < objFiles.length; i++) {
         const resTextId = ea.addText(resX + settings.padding, resY + settings.padding, resItem.resText);
         ea.addToGroup([resRectId, resTextId]);
 
-        // Col 3: Timeline Entregas
+        // Col 3 (Timeline)
         let entY = resY;
         for (const entItem of resItem.entregas) {
-            // Use Calculated X Position (Date Based)
             const entRectId = ea.addRect(entItem.x, entY, entItem.width, entItem.height);
             const entTextId = ea.addText(entItem.x + settings.padding, entY + settings.padding, entItem.text);
             ea.addToGroup([entRectId, entTextId]);
-            
             entY += entItem.height + settings.gapY;
         }
         resY += resItem.resHeight + settings.gapY;
