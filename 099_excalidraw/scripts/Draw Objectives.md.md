@@ -22,7 +22,7 @@ const settings = {
 
     // LAYOUT
     startX: 0,
-    startY: 10000,          
+    startY: 0,          
     colWidth: 250,        
     gapX: 20,             
     timelineStartX: 600,  
