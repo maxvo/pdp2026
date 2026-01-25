@@ -1,8 +1,7 @@
-/* * Excalidraw Script: Gantt 2026 (Strict Limits)
+/* * Excalidraw Script: Gantt Matrix (Precision Fix)
 * Description: 
-* - Grid is LOCKED to Jan 2026 - Dec 2026.
-* - No extra buffer months.
-* - Clickable links.
+* - Fixes 'Dec 25' visual bug.
+* - Ensures Jan 01 aligns exactly with the first grid line.
 */
 
 // --- CONFIGURATION ---
@@ -14,11 +13,11 @@ const settings = {
     resFolder: "030_resultado", 
     entFolder: "040_entrega",
 
-    // TIMELINE LIMITS (STRICT)
-    timelineStart: "2026-01-01",
-    timelineEnd: "2026-12-31",
+    // TIMELINE LOCK
+    timelineStart: "2026-01-01", 
+    timelineEnd:   "2026-12-31", 
     
-    pixelsPerDay: 2,      
+    pixelsPerDay: 5,      
     gridColor: "#e9ecef", 
 
     // LAYOUT
@@ -35,12 +34,11 @@ const settings = {
 
     // STYLE
     fontSize: 16,
-    fontFamily: 1,        
+    fontFamily: 2,        
     colors: ["#4a6fa5", "#5c8a8a"] 
 };
 
 // --- HELPERS ---
-
 function cleanLink(val) {
     if (!val) return "";
     let raw = Array.isArray(val) ? val[0] : val;
@@ -82,12 +80,21 @@ function addLinkedText(x, y, text, filename) {
 
 // --- DATE MATH ---
 
-// Calculate X relative to the STRICT START DATE
-function getXFromDate(dateObj) {
-    const minDate = new Date(settings.timelineStart);
-    const diffTime = dateObj - minDate;
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return settings.timelineStartX + (diffDays * settings.pixelsPerDay);
+// Get bounds from SETTINGS (Strict)
+function getGridBounds() {
+    // Normalize to Midnight to avoid timezone offsets causing 1-day drift
+    const min = new Date(settings.timelineStart + "T00:00:00");
+    const max = new Date(settings.timelineEnd + "T00:00:00");
+    return { min, max };
+}
+
+function getXFromDate(dateObj, minDate) {
+    // Force UTC math to prevent Daylight Savings Time shifting pixels
+    const diffTime = dateObj.getTime() - minDate.getTime();
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    
+    // Add 1px buffer so it doesn't overlap the border exactly
+    return settings.timelineStartX + (diffDays * settings.pixelsPerDay) + 1; 
 }
 
 // --- MAIN LOGIC ---
@@ -102,9 +109,7 @@ const objFiles = fObj.children.filter(f => f.hasOwnProperty('extension'));
 const resFiles = fRes.children.filter(f => f.hasOwnProperty('extension'));
 const entFiles = fEnt.children.filter(f => f.hasOwnProperty('extension'));
 
-// Hardcoded Limits
-const globalStart = new Date(settings.timelineStart);
-const globalEnd = new Date(settings.timelineEnd);
+const { min: globalStart, max: globalEnd } = getGridBounds();
 
 // Map Relationships
 const mapResToObj = {}; 
@@ -151,15 +156,15 @@ for (let i = 0; i < objFiles.length; i++) {
         let entStackHeight = 0;
 
         for (const entData of myEntregas) {
-            let start = entData.startDate ? new Date(entData.startDate) : new Date(globalStart);
-            let end = entData.dueDate ? new Date(entData.dueDate) : new Date(start);
+            // Safe Date Parsing (Append T00:00:00 to prevent timezone drift)
+            let start = entData.startDate ? new Date(entData.startDate + "T00:00:00") : new Date(globalStart);
+            let end = entData.dueDate ? new Date(entData.dueDate + "T00:00:00") : new Date(start);
             
-            // Allow items outside range to exist, but they might be clipped visually
-            if (isNaN(start)) start = new Date(globalStart);
+            if (isNaN(start) || start < globalStart) start = new Date(globalStart);
             if (isNaN(end) || end < start) { end = new Date(start); end.setDate(end.getDate() + 5); }
 
-            const xPos = getXFromDate(start);
-            const wPx = Math.max(50, getXFromDate(end) - xPos); 
+            const xPos = getXFromDate(start, globalStart);
+            const wPx = Math.max(50, getXFromDate(end, globalStart) - xPos); 
 
             const textData = getTextHeight(entData.file.basename, wPx - (settings.padding*2));
             const hPx = Math.max(settings.minHeight, textData.height);
@@ -197,41 +202,39 @@ for (let i = 0; i < objFiles.length; i++) {
 
 
 // --- STEP 2: DRAWING ---
-
 ea.reset();
 if (settings.cleanCanvas) ea.clear();
 
-// A. Draw Grid (Locked to 2026)
+// A. Draw Grid 
 ea.style.strokeColor = "#000000";
 ea.style.fontFamily = settings.fontFamily;
 ea.style.fontSize = settings.fontSize;
 
 let loopDate = new Date(globalStart);
-// Set loopDate to exactly Jan 1st
-loopDate.setDate(1); 
-loopDate.setHours(0,0,0,0);
-
+// No setDate(1) here - assume GlobalStart (Jan 1) is correct
 const gridBottomY = settings.startY + totalChartHeight;
 
-// Loop until Dec 31
 while (loopDate <= globalEnd) {
-    const x = getXFromDate(loopDate);
+    const x = getXFromDate(loopDate, globalStart);
     
     // Grid Line
     ea.style.strokeColor = settings.gridColor;
     ea.style.strokeWidth = 1;
-    ea.addLine([[x, settings.startY - 30], [x, gridBottomY]]);
+    // Draw the line at X - 1 to encapsulate the day
+    ea.addLine([[x-1, settings.startY - 30], [x-1, gridBottomY]]);
 
-    // Month Label
+    // Month Label (Shifted Right by +15px to center in column)
     const monthName = loopDate.toLocaleString('default', { month: 'short', year: '2-digit' });
     ea.style.strokeColor = "#888888"; 
-    ea.addText(x + 5, settings.startY - 50, monthName);
+    ea.addText(x + 10, settings.startY - 50, monthName);
 
-    // Advance 1 month
+    // Increment Month safely
+    // We go to the first day of next month to avoid "30th Feb" issues
+    loopDate.setDate(1); 
     loopDate.setMonth(loopDate.getMonth() + 1);
 }
 
-// Reset Styles
+// B. Draw Objects
 ea.style.backgroundColor = "transparent";
 ea.style.fillStyle = "hachure";
 ea.style.strokeWidth = 1;
@@ -269,8 +272,9 @@ for (let i = 0; i < layoutData.length; i++) {
         }
         resY += resItem.resHeight + settings.gapY;
     }
+
     currentY += row.objHeight + settings.gapY;
 }
 
 await ea.addElementsToView(true, true, true);
-new Notice(`✅ Gantt: 2026 Only.`);
+new Notice(`✅ Fixed Alignment 2026`);
