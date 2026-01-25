@@ -21,8 +21,8 @@ const settings = {
     gridColor: "2f9e44", 
 
     // LAYOUT
-    startX: 500,
-    startY: 500,          
+    startX: 0,
+    startY: 0,          
     colWidth: 250,        
     gapX: 20,             
     timelineStartX: 600,  
