@@ -288,16 +288,15 @@
       "templater-obsidian:Templater": true,
       "obsidian-day-planner:Open Timeline": false,
       "obsidian-day-planner:Open Multi-Day View": false,
-      "obsidian-git:Open Git source control": false,
-      "periodic-notes:Open today": false
+      "obsidian-git:Open Git source control": false
     }
   },
-  "active": "56eb9a2c6d5f1f28",
+  "active": "bea96f7d310116df",
   "lastOpenFiles": [
+    "099_excalidraw/Drawing 2026-01-24 15.17.09.excalidraw.md",
     "099_excalidraw/scripts/Draw Objectives.md.md",
     "099_excalidraw/habilidades-vs-objetivos.md",
     "040_entrega/Sabia.md",
-    "099_excalidraw/Drawing 2026-01-24 15.17.09.excalidraw.md",
     "040_entrega/Camada semântica.md",
     "040_entrega/Hands-On Large Language Models.md",
     "040_entrega/Building applications with AI Agents.md",
