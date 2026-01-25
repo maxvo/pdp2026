@@ -74,20 +74,6 @@
               "icon": "excalidraw-icon",
               "title": "Drawing 2026-01-24 15.17.09.excalidraw"
             }
-          },
-          {
-            "id": "bcd844b9a9a28589",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "040_entrega/Sabia.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Sabia"
-            }
           }
         ],
         "currentTab": 4
@@ -294,15 +280,15 @@
   },
   "active": "56eb9a2c6d5f1f28",
   "lastOpenFiles": [
+    "040_entrega/Sabia.md",
+    "040_entrega/Atualização da esteira de engenharia de analytics.md",
     "099_excalidraw/Drawing 2026-01-24 15.17.09.excalidraw.md",
     "099_excalidraw/scripts/Draw Objectives.md.md",
     "099_excalidraw/habilidades-vs-objetivos.md",
-    "040_entrega/Sabia.md",
     "040_entrega/Camada semântica.md",
     "040_entrega/Hands-On Large Language Models.md",
     "040_entrega/Building applications with AI Agents.md",
     "040_entrega/Identificar pessoas com o perfil de especialista.md",
-    "040_entrega/Atualização da esteira de engenharia de analytics.md",
     "050_agenda/050.2_weekly/2026-W03.md",
     "040_entrega/Roadmap de entregas técnicas alinhadas ao negócio.md",
     "099_excalidraw/roadmap.md",
