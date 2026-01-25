@@ -1,7 +1,7 @@
 ---
 resultado:
   - "[[Estudar seis livros técnicos]]"
-startDate: 2026-03-01
+startDate: 2026-02-15
 dueDate: 2026-04-30
 status: in-progress
 ---
