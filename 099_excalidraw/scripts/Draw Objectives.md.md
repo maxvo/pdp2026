@@ -6,7 +6,7 @@
 
 // --- CONFIGURATION ---
 const settings = {
-    cleanCanvas: true, 
+    cleanCanvas: false, 
 
     // FOLDERS
     objFolder: "020_objetivo",
@@ -22,7 +22,7 @@ const settings = {
 
     // LAYOUT
     startX: 0,
-    startY: 100,          
+    startY: 10000,          
     colWidth: 250,        
     gapX: 20,             
     timelineStartX: 600,  
