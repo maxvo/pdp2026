@@ -1,7 +1,7 @@
 ---
 resultado:
   - "[[Estudar seis livros técnicos]]"
-startDate: 2026-08-01
-dueDate: 2026-09-30
+startDate: 2026-10-01
+dueDate: 2026-11-30
 status: waiting
 ---
