@@ -1,8 +1,8 @@
-/* * Excalidraw Script: Gantt Matrix (Linked & Perfect Grid)
+/* * Excalidraw Script: Gantt 2026 (Strict Limits)
 * Description: 
-* - Starts Jan 2026.
-* - Grid lines match exact chart height.
-* - Clickable links to notes.
+* - Grid is LOCKED to Jan 2026 - Dec 2026.
+* - No extra buffer months.
+* - Clickable links.
 */
 
 // --- CONFIGURATION ---
@@ -14,9 +14,11 @@ const settings = {
     resFolder: "030_resultado", 
     entFolder: "040_entrega",
 
-    // TIMELINE CONFIG
-    forceStartDate: "2026-01-01", // <--- Force Start Date
-    pixelsPerDay: 7,      
+    // TIMELINE LIMITS (STRICT)
+    timelineStart: "2026-01-01",
+    timelineEnd: "2026-12-31",
+    
+    pixelsPerDay: 2,      
     gridColor: "#e9ecef", 
 
     // LAYOUT
@@ -71,34 +73,18 @@ function getTextHeight(text, maxWidth) {
     return { text: wrapped, height: metrics.height + (settings.padding * 2) };
 }
 
-// Helper to make text clickable
 function addLinkedText(x, y, text, filename) {
     const id = ea.addText(x, y, text);
     const el = ea.getElement(id);
-    el.link = `[[${filename}]]`; // <--- Adds the Obsidian Link
+    el.link = `[[${filename}]]`; 
     return id;
 }
 
 // --- DATE MATH ---
 
-function getGlobalDateRange(files) {
-    // 1. Force Start Date
-    let min = new Date(settings.forceStartDate);
-    let max = new Date(min);
-    max.setMonth(max.getMonth() + 6); // Default horizon
-
-    for (const f of files) {
-        const c = app.metadataCache.getFileCache(f);
-        if (c?.frontmatter?.dueDate) {
-            const d = new Date(c.frontmatter.dueDate);
-            if (!isNaN(d) && d > max) max = d;
-        }
-    }
-    max.setDate(max.getDate() + 30); // Buffer at end
-    return { min, max };
-}
-
-function getXFromDate(dateObj, minDate) {
+// Calculate X relative to the STRICT START DATE
+function getXFromDate(dateObj) {
+    const minDate = new Date(settings.timelineStart);
     const diffTime = dateObj - minDate;
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     return settings.timelineStartX + (diffDays * settings.pixelsPerDay);
@@ -116,7 +102,9 @@ const objFiles = fObj.children.filter(f => f.hasOwnProperty('extension'));
 const resFiles = fRes.children.filter(f => f.hasOwnProperty('extension'));
 const entFiles = fEnt.children.filter(f => f.hasOwnProperty('extension'));
 
-const { min: globalStart, max: globalEnd } = getGlobalDateRange(entFiles);
+// Hardcoded Limits
+const globalStart = new Date(settings.timelineStart);
+const globalEnd = new Date(settings.timelineEnd);
 
 // Map Relationships
 const mapResToObj = {}; 
@@ -139,12 +127,9 @@ for (const res of resFiles) {
     }
 }
 
-// --- STEP 1: SIMULATION (Calculate Total Height) ---
-// We run the layout logic purely to find out how tall the chart is
+// --- STEP 1: SIMULATION ---
 const maxTextWidth = settings.colWidth - (settings.padding * 2);
 let totalChartHeight = 0;
-
-// Pre-calculated data structure to reuse in drawing
 const layoutData = []; 
 
 for (let i = 0; i < objFiles.length; i++) {
@@ -156,7 +141,6 @@ for (let i = 0; i < objFiles.length; i++) {
     for (const resFile of myResults) {
         let myEntregas = mapEntToRes[resFile.basename] || [];
         
-        // Sort Date
         myEntregas.sort((a, b) => {
             const dateA = a.startDate ? new Date(a.startDate).getTime() : 0;
             const dateB = b.startDate ? new Date(b.startDate).getTime() : 0;
@@ -170,11 +154,12 @@ for (let i = 0; i < objFiles.length; i++) {
             let start = entData.startDate ? new Date(entData.startDate) : new Date(globalStart);
             let end = entData.dueDate ? new Date(entData.dueDate) : new Date(start);
             
-            if (isNaN(start) || start < globalStart) start = new Date(globalStart);
+            // Allow items outside range to exist, but they might be clipped visually
+            if (isNaN(start)) start = new Date(globalStart);
             if (isNaN(end) || end < start) { end = new Date(start); end.setDate(end.getDate() + 5); }
 
-            const xPos = getXFromDate(start, globalStart);
-            const wPx = Math.max(50, getXFromDate(end, globalStart) - xPos); 
+            const xPos = getXFromDate(start);
+            const wPx = Math.max(50, getXFromDate(end) - xPos); 
 
             const textData = getTextHeight(entData.file.basename, wPx - (settings.padding*2));
             const hPx = Math.max(settings.minHeight, textData.height);
@@ -200,7 +185,6 @@ for (let i = 0; i < objFiles.length; i++) {
     const objTextData = getTextHeight(objFile.basename, maxTextWidth);
     const objFinalHeight = Math.max(settings.minHeight, objTextData.height, rowHeightAccumulator);
 
-    // Save for drawing step
     layoutData.push({
         objFile: objFile,
         objText: objTextData.text,
@@ -217,19 +201,21 @@ for (let i = 0; i < objFiles.length; i++) {
 ea.reset();
 if (settings.cleanCanvas) ea.clear();
 
-// A. Draw Grid (Now using exact height)
+// A. Draw Grid (Locked to 2026)
 ea.style.strokeColor = "#000000";
 ea.style.fontFamily = settings.fontFamily;
 ea.style.fontSize = settings.fontSize;
 
 let loopDate = new Date(globalStart);
+// Set loopDate to exactly Jan 1st
 loopDate.setDate(1); 
+loopDate.setHours(0,0,0,0);
 
-// Grid Line Bottom Y
 const gridBottomY = settings.startY + totalChartHeight;
 
+// Loop until Dec 31
 while (loopDate <= globalEnd) {
-    const x = getXFromDate(loopDate, globalStart);
+    const x = getXFromDate(loopDate);
     
     // Grid Line
     ea.style.strokeColor = settings.gridColor;
@@ -241,6 +227,7 @@ while (loopDate <= globalEnd) {
     ea.style.strokeColor = "#888888"; 
     ea.addText(x + 5, settings.startY - 50, monthName);
 
+    // Advance 1 month
     loopDate.setMonth(loopDate.getMonth() + 1);
 }
 
@@ -253,7 +240,6 @@ ea.style.verticalAlign = "top";
 
 let currentY = settings.startY;
 
-// B. Draw Objects (Using Pre-calculated Data)
 for (let i = 0; i < layoutData.length; i++) {
     const row = layoutData[i];
     const color = settings.colors[i % settings.colors.length];
@@ -261,7 +247,6 @@ for (let i = 0; i < layoutData.length; i++) {
 
     // 1. Objective
     const objRectId = ea.addRect(settings.startX, currentY, settings.colWidth, row.objHeight);
-    // Use Helper for Linked Text
     const objTextId = addLinkedText(settings.startX + settings.padding, currentY + settings.padding, row.objText, row.objFile.basename);
     ea.addToGroup([objRectId, objTextId]);
 
@@ -270,12 +255,11 @@ for (let i = 0; i < layoutData.length; i++) {
     const resX = settings.startX + settings.colWidth + settings.gapX;
 
     for (const resItem of row.rowData) {
-        // Result Block
         const resRectId = ea.addRect(resX, resY, settings.colWidth, resItem.resHeight);
         const resTextId = addLinkedText(resX + settings.padding, resY + settings.padding, resItem.resText, resItem.resFile.basename);
         ea.addToGroup([resRectId, resTextId]);
 
-        // 3. Entregas (Timeline)
+        // 3. Entregas
         let entY = resY;
         for (const entItem of resItem.entregas) {
             const entRectId = ea.addRect(entItem.x, entY, entItem.width, entItem.height);
@@ -285,9 +269,8 @@ for (let i = 0; i < layoutData.length; i++) {
         }
         resY += resItem.resHeight + settings.gapY;
     }
-
     currentY += row.objHeight + settings.gapY;
 }
 
 await ea.addElementsToView(true, true, true);
-new Notice(`✅ Linked Gantt Generated.`);
+new Notice(`✅ Gantt: 2026 Only.`);
