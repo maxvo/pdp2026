@@ -1,4 +1,4 @@
 ---
 objetivo:
-  - "[[Mapear e desenvolver potenciais líderes]]"
+  - "[[Mapear tendências de mercado e tecnologias emergentes]]"
 ---
