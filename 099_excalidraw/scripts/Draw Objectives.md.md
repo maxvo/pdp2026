@@ -18,7 +18,7 @@ const settings = {
     timelineEnd:   "2026-12-31", 
     
     pixelsPerDay: 5,      
-    gridColor: "2f9e44", 
+    gridColor: "#e03131", 
 
     // LAYOUT
     startX: 0,
@@ -35,7 +35,7 @@ const settings = {
     // STYLE
     fontSize: 16,
     fontFamily: 2,        
-    colors: ["#4a6fa5", "#5c8a8a"] 
+    colors: ["#ff8787", "#fa5252"] 
 };
 
 // --- HELPERS ---
@@ -220,6 +220,7 @@ while (loopDate <= globalEnd) {
     // Grid Line
     ea.style.strokeColor = settings.gridColor;
     ea.style.strokeWidth = 1;
+	 ea.style.opacity = 30
     // Draw the line at X - 1 to encapsulate the day
     ea.addLine([[x-1, settings.startY - 30], [x-1, gridBottomY]]);
 
@@ -233,7 +234,7 @@ while (loopDate <= globalEnd) {
     loopDate.setDate(1); 
     loopDate.setMonth(loopDate.getMonth() + 1);
 }
-
+ea.style.opacity = 100
 // B. Draw Objects
 ea.style.backgroundColor = "transparent";
 ea.style.fillStyle = "hachure";
