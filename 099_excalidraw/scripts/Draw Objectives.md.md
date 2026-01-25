@@ -18,7 +18,7 @@ const settings = {
     timelineEnd:   "2026-12-31", 
     
     pixelsPerDay: 5,      
-    gridColor: "#e9ecef", 
+    gridColor: "2f9e44", 
 
     // LAYOUT
     startX: 0,
