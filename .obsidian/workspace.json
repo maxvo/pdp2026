@@ -233,14 +233,13 @@
       "templater-obsidian:Templater": true,
       "obsidian-day-planner:Open Timeline": false,
       "obsidian-day-planner:Open Multi-Day View": false,
-      "obsidian-git:Open Git source control": false,
-      "periodic-notes:Open today": false
+      "obsidian-git:Open Git source control": false
     }
   },
-  "active": "dcc0862c9721e3a8",
+  "active": "ea2c31db59b8bc8b",
   "lastOpenFiles": [
-    "099_excalidraw/scripts/Draw Objectives.md.md",
     "099_excalidraw/visao-geral-pdp.md",
+    "099_excalidraw/scripts/Draw Objectives.md.md",
     "040_entrega/Collaborative Learning.md",
     "040_entrega/Designing data intensive applications.md",
     "040_entrega/Agentic Mesh.md",
