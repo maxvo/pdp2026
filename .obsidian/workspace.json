@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "099_templates/050.02_weekly.md.md",
+                "file": "050_agenda/050.3_monthly/2026-01.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "050.02_weekly.md"
+              "title": "2026-01"
             }
           }
         ],
@@ -241,6 +241,10 @@
   "active": "5e38467c03784abb",
   "lastOpenFiles": [
     "099_templates/050.03_monthly.md.md",
+    "050_agenda/050.3_monthly/2026-01.md",
+    "050_agenda/050.3_monthly/2026-01.md",
+    "099_templates/050.04_quarterly.md.md",
+    "099_templates/050.02_weekly.md.md",
     "050_agenda/050.1_daily/2026-01-09.md",
     "050_agenda/050.1_daily/2026-01-08.md",
     "050_agenda/050.1_daily/2026-01-07.md",
@@ -262,10 +266,6 @@
     "040_entrega/Designing data intensive applications.md",
     "040_entrega/Agentic Mesh.md",
     "040_entrega/Hands-On Large Language Models.md",
-    "040_entrega/Fundamentals of software engineering.md",
-    "040_entrega/Building applications with AI Agents.md",
-    "030_resultado/Apresentar tendências de mercado e inovações tecnológicas pelo menos três vezes ao ano.md",
-    "099_excalidraw/Drawing 2026-01-24 15.17.09.excalidraw.md",
     "050_agenda/050.5_yearly",
     "050_agenda/050.4_quarterly",
     "050_agenda/050.3_monthly",
