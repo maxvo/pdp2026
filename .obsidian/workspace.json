@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "050_agenda/050.3_monthly/2026-01.md",
+                "file": "050_agenda/050.1_daily/2026-02-02.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-01"
+              "title": "2026-02-02"
             }
           }
         ],
@@ -234,14 +234,15 @@
       "templater-obsidian:Templater": true,
       "obsidian-day-planner:Open Timeline": false,
       "obsidian-day-planner:Open Multi-Day View": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "periodic-notes:Open today": false
     }
   },
   "active": "5e38467c03784abb",
   "lastOpenFiles": [
+    "050_agenda/050.3_monthly/2026-01.md",
+    "050_agenda/050.1_daily/2026-02-02.md",
     "099_templates/050.03_monthly.md.md",
-    "050_agenda/050.3_monthly/2026-01.md",
-    "050_agenda/050.3_monthly/2026-01.md",
     "099_templates/050.04_quarterly.md.md",
     "099_templates/050.02_weekly.md.md",
     "050_agenda/050.1_daily/2026-01-09.md",
@@ -264,7 +265,6 @@
     "040_entrega/Collaborative Learning.md",
     "040_entrega/Designing data intensive applications.md",
     "040_entrega/Agentic Mesh.md",
-    "040_entrega/Hands-On Large Language Models.md",
     "050_agenda/050.5_yearly",
     "050_agenda/050.4_quarterly",
     "050_agenda/050.3_monthly",
