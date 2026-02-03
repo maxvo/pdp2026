@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "050_agenda/050.1_daily/2026-02-02.md",
+                "file": "050_agenda/050.1_daily/2026-02-03.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-02-02"
+              "title": "2026-02-03"
             }
           }
         ],
@@ -240,8 +240,9 @@
   },
   "active": "5e38467c03784abb",
   "lastOpenFiles": [
-    "050_agenda/050.3_monthly/2026-01.md",
     "050_agenda/050.1_daily/2026-02-02.md",
+    "050_agenda/050.1_daily/2026-02-03.md",
+    "050_agenda/050.3_monthly/2026-01.md",
     "099_templates/050.03_monthly.md.md",
     "099_templates/050.04_quarterly.md.md",
     "099_templates/050.02_weekly.md.md",
