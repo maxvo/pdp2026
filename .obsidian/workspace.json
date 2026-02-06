@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "050_agenda/050.1_daily/2026-02-03.md",
+                "file": "050_agenda/050.1_daily/2026-02-06.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-02-03"
+              "title": "2026-02-06"
             }
           }
         ],
@@ -156,7 +156,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 334.5
+    "width": 334.5,
+    "collapsed": true
   },
   "right": {
     "id": "17f45d87c929b8ce",
@@ -165,7 +166,6 @@
       {
         "id": "6a8261e5bc00035d",
         "type": "tabs",
-        "dimension": 50.595238095238095,
         "children": [
           {
             "id": "c3adaf74069274bf",
@@ -204,9 +204,8 @@
         ]
       },
       {
-        "id": "bf5ad54ca97ccd99",
+        "id": "cf14d884aae3829c",
         "type": "tabs",
-        "dimension": 49.404761904761905,
         "children": [
           {
             "id": "634eb5d55251b70b",
@@ -234,13 +233,15 @@
       "templater-obsidian:Templater": true,
       "obsidian-day-planner:Open Timeline": false,
       "obsidian-day-planner:Open Multi-Day View": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "periodic-notes:Open today": false
     }
   },
-  "active": "5e38467c03784abb",
+  "active": "634eb5d55251b70b",
   "lastOpenFiles": [
-    "050_agenda/050.1_daily/2026-02-02.md",
     "050_agenda/050.1_daily/2026-02-03.md",
+    "050_agenda/050.1_daily/2026-02-06.md",
+    "050_agenda/050.1_daily/2026-02-02.md",
     "050_agenda/050.3_monthly/2026-01.md",
     "099_templates/050.03_monthly.md.md",
     "099_templates/050.04_quarterly.md.md",
@@ -264,7 +265,6 @@
     "099_excalidraw/visao-geral-pdp.md",
     "040_entrega/Collaborative Learning.md",
     "040_entrega/Designing data intensive applications.md",
-    "040_entrega/Agentic Mesh.md",
     "050_agenda/050.5_yearly",
     "050_agenda/050.4_quarterly",
     "050_agenda/050.3_monthly",
