@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "050_agenda/050.1_daily/2026-02-06.md",
+                "file": "050_agenda/050.1_daily/2026-02-05.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-02-06"
+              "title": "2026-02-05"
             }
           }
         ],
@@ -237,8 +237,10 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "634eb5d55251b70b",
+  "active": "5e38467c03784abb",
   "lastOpenFiles": [
+    "050_agenda/050.1_daily/2026-02-04.md",
+    "050_agenda/050.1_daily/2026-02-05.md",
     "050_agenda/050.1_daily/2026-02-03.md",
     "050_agenda/050.1_daily/2026-02-06.md",
     "050_agenda/050.1_daily/2026-02-02.md",
@@ -263,8 +265,6 @@
     "050_agenda/050.1_daily/2026-01-20.md",
     "050_agenda/050.1_daily/2026-01-19.md",
     "099_excalidraw/visao-geral-pdp.md",
-    "040_entrega/Collaborative Learning.md",
-    "040_entrega/Designing data intensive applications.md",
     "050_agenda/050.5_yearly",
     "050_agenda/050.4_quarterly",
     "050_agenda/050.3_monthly",
