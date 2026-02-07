@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "050_agenda/050.1_daily/2026-02-02.md",
+                "file": "050_agenda/050.2_weekly/2026-W06.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-02-02"
+              "title": "2026-W06"
             }
           }
         ],
@@ -252,12 +252,13 @@
   },
   "active": "a398958420e3a89a",
   "lastOpenFiles": [
-    "050_agenda/050.1_daily/2026-02-05.md",
-    "099_excalidraw/visao-geral-pdp.md",
-    "050_agenda/050.1_daily/2026-02-02.md",
-    "050_agenda/050.1_daily/2026-02-04.md",
-    "050_agenda/050.1_daily/2026-02-03.md",
     "050_agenda/050.1_daily/2026-02-06.md",
+    "050_agenda/050.2_weekly/2026-W06.md",
+    "050_agenda/050.1_daily/2026-02-05.md",
+    "050_agenda/050.1_daily/2026-02-02.md",
+    "050_agenda/050.1_daily/2026-02-03.md",
+    "050_agenda/050.1_daily/2026-02-04.md",
+    "099_excalidraw/visao-geral-pdp.md",
     "050_agenda/050.3_monthly/2026-01.md",
     "099_templates/050.03_monthly.md.md",
     "099_templates/050.04_quarterly.md.md",
@@ -277,7 +278,6 @@
     "045_overhead/Capacitação do banco.md",
     "050_agenda/050.1_daily/2026-01-21.md",
     "050_agenda/050.1_daily/2026-01-20.md",
-    "050_agenda/050.1_daily/2026-01-19.md",
     "050_agenda/050.5_yearly",
     "050_agenda/050.4_quarterly",
     "050_agenda/050.3_monthly",
