@@ -39,10 +39,14 @@
             "id": "a398958420e3a89a",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "050_agenda/050.1_daily/2026-02-02.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "2026-02-02"
             }
           }
         ],
@@ -166,8 +170,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 334.5,
-    "collapsed": true
+    "width": 334.5
   },
   "right": {
     "id": "17f45d87c929b8ce",
@@ -250,10 +253,11 @@
   "active": "a398958420e3a89a",
   "lastOpenFiles": [
     "050_agenda/050.1_daily/2026-02-05.md",
+    "099_excalidraw/visao-geral-pdp.md",
+    "050_agenda/050.1_daily/2026-02-02.md",
     "050_agenda/050.1_daily/2026-02-04.md",
     "050_agenda/050.1_daily/2026-02-03.md",
     "050_agenda/050.1_daily/2026-02-06.md",
-    "050_agenda/050.1_daily/2026-02-02.md",
     "050_agenda/050.3_monthly/2026-01.md",
     "099_templates/050.03_monthly.md.md",
     "099_templates/050.04_quarterly.md.md",
@@ -274,7 +278,6 @@
     "050_agenda/050.1_daily/2026-01-21.md",
     "050_agenda/050.1_daily/2026-01-20.md",
     "050_agenda/050.1_daily/2026-01-19.md",
-    "099_excalidraw/visao-geral-pdp.md",
     "050_agenda/050.5_yearly",
     "050_agenda/050.4_quarterly",
     "050_agenda/050.3_monthly",
