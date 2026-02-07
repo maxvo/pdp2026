@@ -34,9 +34,19 @@
               "icon": "lucide-file",
               "title": "2026-02-05"
             }
+          },
+          {
+            "id": "a398958420e3a89a",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -237,10 +247,10 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "5e38467c03784abb",
+  "active": "a398958420e3a89a",
   "lastOpenFiles": [
-    "050_agenda/050.1_daily/2026-02-04.md",
     "050_agenda/050.1_daily/2026-02-05.md",
+    "050_agenda/050.1_daily/2026-02-04.md",
     "050_agenda/050.1_daily/2026-02-03.md",
     "050_agenda/050.1_daily/2026-02-06.md",
     "050_agenda/050.1_daily/2026-02-02.md",
