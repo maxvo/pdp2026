@@ -48,9 +48,21 @@
               "icon": "lucide-file",
               "title": "2026-W06"
             }
+          },
+          {
+            "id": "eb1a4393b5dadf13",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.11.7"
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.11.7"
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -246,11 +258,10 @@
       "templater-obsidian:Templater": true,
       "obsidian-day-planner:Open Timeline": false,
       "obsidian-day-planner:Open Multi-Day View": false,
-      "obsidian-git:Open Git source control": false,
-      "periodic-notes:Open today": false
+      "obsidian-git:Open Git source control": false
     }
   },
-  "active": "a398958420e3a89a",
+  "active": "eb1a4393b5dadf13",
   "lastOpenFiles": [
     "050_agenda/050.1_daily/2026-02-06.md",
     "050_agenda/050.2_weekly/2026-W06.md",
