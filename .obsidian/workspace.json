@@ -53,12 +53,14 @@
             "id": "eb1a4393b5dadf13",
             "type": "leaf",
             "state": {
-              "type": "release-notes",
+              "type": "markdown",
               "state": {
-                "currentVersion": "1.11.7"
+                "file": "050_agenda/050.1_daily/2026-02-10.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-book-up",
-              "title": "Release Notes 1.11.7"
+              "icon": "lucide-file",
+              "title": "2026-02-10"
             }
           }
         ],
@@ -182,7 +184,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 334.5
+    "width": 334.5,
+    "collapsed": true
   },
   "right": {
     "id": "17f45d87c929b8ce",
@@ -191,6 +194,7 @@
       {
         "id": "6a8261e5bc00035d",
         "type": "tabs",
+        "dimension": 39.43452380952381,
         "children": [
           {
             "id": "c3adaf74069274bf",
@@ -231,6 +235,7 @@
       {
         "id": "cf14d884aae3829c",
         "type": "tabs",
+        "dimension": 60.56547619047619,
         "children": [
           {
             "id": "634eb5d55251b70b",
@@ -258,11 +263,14 @@
       "templater-obsidian:Templater": true,
       "obsidian-day-planner:Open Timeline": false,
       "obsidian-day-planner:Open Multi-Day View": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "periodic-notes:Open today": false
     }
   },
   "active": "eb1a4393b5dadf13",
   "lastOpenFiles": [
+    "050_agenda/050.1_daily/2026-02-09.md",
+    "050_agenda/050.1_daily/2026-02-10.md",
     "050_agenda/050.1_daily/2026-02-06.md",
     "050_agenda/050.2_weekly/2026-W06.md",
     "050_agenda/050.1_daily/2026-02-05.md",
@@ -287,8 +295,6 @@
     "050_agenda/050.1_daily/2026-01-26.md",
     "099_excalidraw/scripts/Draw Objectives.md.md",
     "045_overhead/Capacitação do banco.md",
-    "050_agenda/050.1_daily/2026-01-21.md",
-    "050_agenda/050.1_daily/2026-01-20.md",
     "050_agenda/050.5_yearly",
     "050_agenda/050.4_quarterly",
     "050_agenda/050.3_monthly",
