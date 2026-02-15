@@ -49,8 +49,7 @@
               "title": "2026-W07"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -248,13 +247,14 @@
       "templater-obsidian:Templater": true,
       "obsidian-day-planner:Open Timeline": false,
       "obsidian-day-planner:Open Multi-Day View": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "periodic-notes:Open today": false
     }
   },
-  "active": "a398958420e3a89a",
+  "active": "dcc0862c9721e3a8",
   "lastOpenFiles": [
-    "050_agenda/050.2_weekly/2026-W06.md",
     "050_agenda/050.2_weekly/2026-W07.md",
+    "050_agenda/050.2_weekly/2026-W06.md",
     "050_agenda/050.1_daily/2026-02-13.md",
     "050_agenda/050.1_daily/2026-02-12.md",
     "050_agenda/050.1_daily/2026-02-11.md",
