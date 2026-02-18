@@ -345,7 +345,7 @@ iUe10Zo2: [[Estudar seis livros técnicos]]
 
 jJwpFaWu: [[Building applications with AI Agents]]
 
-4CmEyfTu: [[Fundamentals of software engineering]]
+4CmEyfTu: [[The Pragmatic Programmer]]
 
 lSemyNH7: [[Hands-On Large Language Models]]
 
