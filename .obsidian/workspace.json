@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "040_entrega/The Pragmatic Programmer.md",
+                "file": "050_agenda/050.1_daily/2026-02-20.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "The Pragmatic Programmer"
+              "title": "2026-02-20"
             }
           },
           {
@@ -276,11 +276,14 @@
       "templater-obsidian:Templater": true,
       "obsidian-day-planner:Open Timeline": false,
       "obsidian-day-planner:Open Multi-Day View": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "periodic-notes:Open today": false
     }
   },
   "active": "64cacc35aac8fca0",
   "lastOpenFiles": [
+    "040_entrega/The Pragmatic Programmer.md",
+    "050_agenda/050.1_daily/2026-02-20.md",
     "099_excalidraw/visao-geral-pdp.md",
     "050_agenda/050.1_daily/2026-02-17.md",
     "050_agenda/050.1_daily/2026-02-16.md",
@@ -305,8 +308,6 @@
     "099_templates/050.03_monthly.md.md",
     "099_templates/050.04_quarterly.md.md",
     "099_templates/050.02_weekly.md.md",
-    "050_agenda/050.1_daily/2026-01-09.md",
-    "050_agenda/050.1_daily/2026-01-08.md",
     "050_agenda/050.5_yearly",
     "050_agenda/050.4_quarterly",
     "050_agenda/050.3_monthly",
