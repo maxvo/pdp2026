@@ -77,8 +77,7 @@
               "title": "2026-02-17"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -280,16 +279,16 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "64cacc35aac8fca0",
+  "active": "dcc0862c9721e3a8",
   "lastOpenFiles": [
-    "050_agenda/050.1_daily/2026-02-19.md",
     "050_agenda/050.1_daily/2026-02-25.md",
     "050_agenda/050.1_daily/2026-02-20.md",
+    "050_agenda/050.1_daily/2026-02-19.md",
+    "050_agenda/050.1_daily/2026-02-17.md",
+    "050_agenda/050.1_daily/2026-02-16.md",
     "050_agenda/050.1_daily/2026-02-18.md",
     "040_entrega/The Pragmatic Programmer.md",
     "099_excalidraw/visao-geral-pdp.md",
-    "050_agenda/050.1_daily/2026-02-17.md",
-    "050_agenda/050.1_daily/2026-02-16.md",
     "050_agenda/050.2_weekly/2026-W07.md",
     "040_entrega/Tendências de mercado (jun26).md",
     "040_entrega/Tendências de mercado (fev26).md",
