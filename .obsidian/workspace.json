@@ -118,9 +118,21 @@
               "icon": "lucide-file",
               "title": "2026-02-26"
             }
+          },
+          {
+            "id": "46fc220481d1e00c",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.12.4"
+              },
+              "icon": "lucide-book-up",
+              "title": "Notas de Lançamento 1.12.4"
+            }
           }
         ],
-        "currentTab": 7
+        "currentTab": 8
       }
     ],
     "direction": "vertical"
@@ -143,7 +155,7 @@
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "Explorador de arquivos"
             }
           },
           {
@@ -310,19 +322,18 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": true,
-      "graph:Open graph view": true,
-      "command-palette:Open command palette": true,
-      "bases:Create new base": true,
+      "switcher:Abrir a troca rápida": false,
+      "graph:Abrir visualização em gráfico": false,
+      "command-palette:Abrir paleta de comandos": false,
+      "bases:Criar nova base": false,
       "obsidian-excalidraw-plugin:New drawing": true,
       "templater-obsidian:Templater": true,
       "obsidian-day-planner:Open Timeline": false,
       "obsidian-day-planner:Open Multi-Day View": false,
-      "obsidian-git:Open Git source control": false,
-      "periodic-notes:Open today": false
+      "obsidian-git:Open Git source control": false
     }
   },
-  "active": "7e69006875fbe35c",
+  "active": "46fc220481d1e00c",
   "lastOpenFiles": [
     "099_excalidraw/visao-geral-pdp.md",
     "050_agenda/050.1_daily/2026-02-26.md",
