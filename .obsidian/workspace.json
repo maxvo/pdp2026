@@ -105,8 +105,7 @@
               "title": "2026-02"
             }
           }
-        ],
-        "currentTab": 6
+        ]
       }
     ],
     "direction": "vertical"
@@ -308,10 +307,16 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "487afda0b415343c",
+  "active": "dcc0862c9721e3a8",
   "lastOpenFiles": [
-    "040_entrega/The Pragmatic Programmer.md",
+    "040_entrega/Roadmap de entregas técnicas alinhadas ao negócio.md",
+    "099_excalidraw/visao-geral-pdp.md",
+    "040_entrega/Chat-to-data.md",
+    "020_objetivo/Mapear os desafios de negócio e as alavancas estratégicas.md",
+    "040_entrega/Criação do Analytics de Operação.md",
+    "040_entrega/Atualização da esteira de engenharia de analytics.md",
     "050_agenda/050.3_monthly/2026-02.md",
+    "040_entrega/The Pragmatic Programmer.md",
     "050_agenda/050.2_weekly/2026-W08.md",
     "050_agenda/050.2_weekly/2026-W09.md",
     "050_agenda/050.1_daily/2026-02-27.md",
@@ -319,8 +324,6 @@
     "050_agenda/050.1_daily/2026-02-25.md",
     "050_agenda/050.1_daily/2026-02-24.md",
     "050_agenda/050.1_daily/2026-02-23.md",
-    "099_excalidraw/visao-geral-pdp.md",
-    "020_objetivo/Mapear os desafios de negócio e as alavancas estratégicas.md",
     "050_agenda/050.1_daily/2026-02-20.md",
     "050_agenda/050.1_daily/2026-02-19.md",
     "050_agenda/050.1_daily/2026-02-17.md",
@@ -329,13 +332,9 @@
     "050_agenda/050.2_weekly/2026-W07.md",
     "040_entrega/Tendências de mercado (jun26).md",
     "040_entrega/Tendências de mercado (fev26).md",
-    "040_entrega/Chat-to-data.md",
     "040_entrega/Camada semântica.md",
     "050_agenda/050.2_weekly/2026-W06.md",
     "050_agenda/050.1_daily/2026-02-13.md",
-    "050_agenda/050.1_daily/2026-02-12.md",
-    "050_agenda/050.1_daily/2026-02-11.md",
-    "050_agenda/050.1_daily/2026-02-10.md",
     "050_agenda/050.5_yearly",
     "050_agenda/050.4_quarterly",
     "050_agenda/050.3_monthly",
