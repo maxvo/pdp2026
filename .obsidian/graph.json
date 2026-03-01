@@ -1,22 +1,51 @@
 {
   "collapse-filter": true,
-  "search": "path:010_foco  path:020_objetivo  ",
+  "search": "path:010_foco OR path:020_objetivo  OR path:030_resultado  OR path:040_entrega  ",
   "showTags": false,
   "showAttachments": false,
   "hideUnresolved": false,
   "showOrphans": true,
-  "collapse-color-groups": true,
-  "colorGroups": [],
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "path:010_foco  ",
+      "color": {
+        "a": 1,
+        "rgb": 16752396
+      }
+    },
+    {
+      "query": "path:020_objetivo  ",
+      "color": {
+        "a": 1,
+        "rgb": 16743168
+      }
+    },
+    {
+      "query": "path:030_resultado  ",
+      "color": {
+        "a": 1,
+        "rgb": 11753984
+      }
+    },
+    {
+      "query": "path:040_entrega  ",
+      "color": {
+        "a": 1,
+        "rgb": 6697728
+      }
+    }
+  ],
   "collapse-display": true,
   "showArrow": false,
-  "textFadeMultiplier": 0,
-  "nodeSizeMultiplier": 1,
-  "lineSizeMultiplier": 1,
-  "collapse-forces": true,
-  "centerStrength": 0.518713248970312,
-  "repelStrength": 10,
+  "textFadeMultiplier": 3,
+  "nodeSizeMultiplier": 1.61848958333333,
+  "lineSizeMultiplier": 2.74140625,
+  "collapse-forces": false,
+  "centerStrength": 0,
+  "repelStrength": 0,
   "linkStrength": 1,
-  "linkDistance": 250,
-  "scale": 0.36288736930121107,
+  "linkDistance": 30,
+  "scale": 0.13168724279835356,
   "close": false
 }
