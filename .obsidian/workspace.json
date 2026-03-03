@@ -121,12 +121,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "050_agenda/050.1_daily/2026-03-02.md",
+                "file": "050_agenda/050.1_daily/2026-03-03.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-03-02"
+              "title": "2026-03-03"
             }
           }
         ],
@@ -334,8 +334,9 @@
   },
   "active": "cdcb60c79ca7a0c3",
   "lastOpenFiles": [
-    "099_excalidraw/visao-geral-pdp.md",
     "050_agenda/050.1_daily/2026-03-02.md",
+    "050_agenda/050.1_daily/2026-03-03.md",
+    "099_excalidraw/visao-geral-pdp.md",
     "040_entrega/Roadmap de entregas técnicas alinhadas ao negócio.md",
     "040_entrega/Chat-to-data.md",
     "020_objetivo/Mapear os desafios de negócio e as alavancas estratégicas.md",
@@ -359,7 +360,6 @@
     "040_entrega/Tendências de mercado (jun26).md",
     "040_entrega/Tendências de mercado (fev26).md",
     "040_entrega/Camada semântica.md",
-    "050_agenda/050.2_weekly/2026-W06.md",
     "050_agenda/050.5_yearly",
     "050_agenda/050.4_quarterly",
     "050_agenda/050.3_monthly",
