@@ -39,14 +39,12 @@
             "id": "ee6fb8a4bf956dbe",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "excalidraw",
               "state": {
-                "file": "065_softskills/habilidades_lider_tecnologia.md",
-                "mode": "preview",
-                "source": false
+                "file": "099_excalidraw/visao-geral-pdp.md"
               },
-              "icon": "lucide-file",
-              "title": "habilidades_lider_tecnologia"
+              "icon": "excalidraw-icon",
+              "title": "visao-geral-pdp"
             }
           }
         ],
@@ -254,8 +252,9 @@
   },
   "active": "ee6fb8a4bf956dbe",
   "lastOpenFiles": [
-    "065_softskills/habilidades_especialista.md",
     "099_excalidraw/habilidades-vs-objetivos.md",
+    "065_softskills/habilidades_especialista.md",
+    "065_softskills/habilidades_lider_tecnologia.md",
     "099_excalidraw/roadmap.md",
     "099_excalidraw/visao-geral-pdp.md",
     "099_excalidraw/visao-geral-pdp-old.md",
@@ -279,7 +278,6 @@
     "050_agenda/050.1_daily/2026-02-25.md",
     "050_agenda/050.1_daily/2026-02-24.md",
     "050_agenda/050.1_daily/2026-02-23.md",
-    "050_agenda/050.1_daily/2026-02-20.md",
     "050_agenda/050.5_yearly",
     "050_agenda/050.4_quarterly",
     "050_agenda/050.3_monthly",
