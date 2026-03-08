@@ -27,15 +27,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "050_agenda/050.1_daily/2026-03-04.md",
+                "file": "050_agenda/050.1_daily/2026-03-06.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-03-04"
+              "title": "2026-03-06"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -237,15 +238,15 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "dcc0862c9721e3a8",
+  "active": "702101820c47bc60",
   "lastOpenFiles": [
+    "050_agenda/050.1_daily/2026-03-05.md",
+    "050_agenda/050.1_daily/2026-03-06.md",
     "050_agenda/050.1_daily/2026-03-04.md",
     "050_agenda/050.1_daily/2026-03-03.md",
     "050_agenda/050.1_daily/2026-03-02.md",
     "099_excalidraw/visao-geral-pdp.md",
     "045_overhead/Hora de estudo.md",
-    "050_agenda/050.1_daily/2026-03-05.md",
-    "050_agenda/050.1_daily/2026-03-06.md",
     "040_entrega/Roadmap de entregas técnicas alinhadas ao negócio.md",
     "040_entrega/Chat-to-data.md",
     "020_objetivo/Mapear os desafios de negócio e as alavancas estratégicas.md",
