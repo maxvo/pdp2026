@@ -236,7 +236,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 605.5
+    "width": 605.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -252,8 +253,9 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "ee6fb8a4bf956dbe",
+  "active": "8a6613f454879cc2",
   "lastOpenFiles": [
+    "070_conhecimento",
     "099_excalidraw/visao-geral-pdp.md",
     "050_agenda/050.1_daily/2026-03-09.md",
     "040_entrega/Building applications with AI Agents ✅.md",
@@ -279,7 +281,6 @@
     "050_agenda/050.2_weekly/2026-W09.md",
     "050_agenda/050.1_daily/2026-02-27.md",
     "050_agenda/050.1_daily/2026-02-26.md",
-    "050_agenda/050.1_daily/2026-02-25.md",
     "050_agenda/050.5_yearly",
     "050_agenda/050.4_quarterly",
     "050_agenda/050.3_monthly",
