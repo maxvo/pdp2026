@@ -39,12 +39,14 @@
             "id": "ee6fb8a4bf956dbe",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "099_excalidraw/visao-geral-pdp.md"
+                "file": "050_agenda/050.1_daily/2026-03-09.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "excalidraw-icon",
-              "title": "visao-geral-pdp"
+              "icon": "lucide-file",
+              "title": "2026-03-09"
             }
           }
         ],
@@ -252,8 +254,9 @@
   },
   "active": "ee6fb8a4bf956dbe",
   "lastOpenFiles": [
-    "040_entrega/Building applications with AI Agents ✅.md",
     "099_excalidraw/visao-geral-pdp.md",
+    "050_agenda/050.1_daily/2026-03-09.md",
+    "040_entrega/Building applications with AI Agents ✅.md",
     "099_excalidraw/habilidades-vs-objetivos.md",
     "065_softskills/habilidades_especialista.md",
     "065_softskills/habilidades_lider_tecnologia.md",
@@ -277,7 +280,6 @@
     "050_agenda/050.1_daily/2026-02-27.md",
     "050_agenda/050.1_daily/2026-02-26.md",
     "050_agenda/050.1_daily/2026-02-25.md",
-    "050_agenda/050.1_daily/2026-02-24.md",
     "050_agenda/050.5_yearly",
     "050_agenda/050.4_quarterly",
     "050_agenda/050.3_monthly",
