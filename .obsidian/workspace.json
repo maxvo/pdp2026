@@ -34,9 +34,19 @@
               "icon": "lucide-file",
               "title": "AWS Certified Machine Learning Associate"
             }
+          },
+          {
+            "id": "42a67f27a8b7d8cb",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -239,8 +249,9 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "702101820c47bc60",
+  "active": "42a67f27a8b7d8cb",
   "lastOpenFiles": [
+    "040_entrega/AWS Certified Machine Learning Associate.md",
     "050_agenda/050.1_daily/2026-03-06.md",
     "070_conhecimento/Untitled.md",
     "050_agenda/050.1_daily/2026-03-09.md",
@@ -267,7 +278,6 @@
     "050_agenda/050.2_weekly/2026-W08.md",
     "050_agenda/050.2_weekly/2026-W09.md",
     "050_agenda/050.1_daily/2026-02-27.md",
-    "050_agenda/050.1_daily/2026-02-26.md",
     "050_agenda/050.5_yearly",
     "050_agenda/050.4_quarterly",
     "050_agenda/050.3_monthly",
