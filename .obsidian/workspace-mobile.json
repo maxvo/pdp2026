@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "e380b15f0375ccf8",
+        "id": "59b3bc5dab052a43",
         "type": "tabs",
         "children": [
           {
-            "id": "595b5b6bd65a6407",
+            "id": "3b2f2607dfbce5c1",
             "type": "leaf",
             "state": {
-              "type": "diff-view",
-              "state": {
-                "aFile": ".obsidian/workspace-mobile.json",
-                "bFile": ".obsidian/workspace-mobile.json",
-                "aRef": ""
-              },
-              "icon": "git-pull-request",
-              "title": "Diff: workspace-mobile.json"
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Nova aba"
             }
           }
         ]
@@ -185,7 +181,7 @@
         }
       }
     ],
-    "currentTab": 5
+    "currentTab": 4
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -201,7 +197,7 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "595b5b6bd65a6407",
+  "active": "3b2f2607dfbce5c1",
   "lastOpenFiles": [
     "050_agenda/050.1_daily/2026-04-10.md",
     "099_excalidraw/visao-geral-pdp.md"
