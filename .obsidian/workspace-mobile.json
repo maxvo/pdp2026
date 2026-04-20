@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "050_agenda/050.1_daily/2026-04-17.md",
+                "file": "050_agenda/050.1_daily/2026-04-20.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-04-17"
+              "title": "2026-04-20"
             }
           }
         ],
@@ -218,8 +218,9 @@
   },
   "active": "46ec9bf390014db4",
   "lastOpenFiles": [
-    "050_agenda/050.1_daily/2026-04-15.md",
     "050_agenda/050.1_daily/2026-04-17.md",
+    "050_agenda/050.1_daily/2026-04-20.md",
+    "050_agenda/050.1_daily/2026-04-15.md",
     "050_agenda/050.1_daily/2026-04-16.md",
     "099_excalidraw/visao-geral-pdp.md",
     "050_agenda/050.1_daily/2026-04-14.md",
