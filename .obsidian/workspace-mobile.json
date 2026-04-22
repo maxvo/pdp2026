@@ -1,0 +1,260 @@
+{
+  "main": {
+    "id": "8ea149dc3a084ef8",
+    "type": "split",
+    "children": [
+      {
+        "id": "59b3bc5dab052a43",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3b2f2607dfbce5c1",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "099_excalidraw/visao-geral-pdp.md"
+              },
+              "pinned": true,
+              "icon": "excalidraw-icon",
+              "title": "visao-geral-pdp"
+            }
+          },
+          {
+            "id": "46ec9bf390014db4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "050_agenda/050.1_daily/2026-04-20.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-04-20"
+            }
+          },
+          {
+            "id": "76ddca25e3cb0803",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "098_outros/Viagem Buenos Aires.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Viagem Buenos Aires"
+            }
+          },
+          {
+            "id": "7f2cce0c192bed08",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "098_outros/Drawing 2026-04-21 21.25.11.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2026-04-21 21.25.11.excalidraw"
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ebaf3fde2596c069",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "343a51fa5868b56a",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {
+            "sortOrder": "alphabetical",
+            "autoReveal": false
+          },
+          "icon": "lucide-folder-closed",
+          "title": "Explorador de arquivos"
+        }
+      },
+      {
+        "id": "84165f3f41e08cb1",
+        "type": "leaf",
+        "state": {
+          "type": "search",
+          "state": {
+            "query": "",
+            "matchingCase": false,
+            "explainSearch": false,
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical"
+          },
+          "icon": "lucide-search",
+          "title": "Procurar"
+        }
+      },
+      {
+        "id": "29634ae9e1d3c102",
+        "type": "leaf",
+        "state": {
+          "type": "tag",
+          "state": {
+            "sortOrder": "frequency",
+            "useHierarchy": true,
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-tags",
+          "title": "Etiquetas"
+        }
+      },
+      {
+        "id": "8155f1e1a90381f1",
+        "type": "leaf",
+        "state": {
+          "type": "all-properties",
+          "state": {
+            "sortOrder": "frequency",
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-archive",
+          "title": "Todas as propriedades"
+        }
+      },
+      {
+        "id": "40cba1342989511a",
+        "type": "leaf",
+        "state": {
+          "type": "bookmarks",
+          "state": {},
+          "icon": "lucide-bookmark",
+          "title": "Marcadores"
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "right": {
+    "id": "95f96c3839c896ce",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "e30450af75cdd8f6",
+        "type": "leaf",
+        "state": {
+          "type": "backlink",
+          "state": {
+            "file": "099_excalidraw/visao-geral-pdp.md",
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical",
+            "showSearch": false,
+            "searchQuery": "",
+            "backlinkCollapsed": false,
+            "unlinkedCollapsed": true
+          },
+          "icon": "links-coming-in",
+          "title": "Links inversos"
+        }
+      },
+      {
+        "id": "ffb4023cf9f9f066",
+        "type": "leaf",
+        "state": {
+          "type": "outgoing-link",
+          "state": {
+            "file": "099_excalidraw/visao-geral-pdp.md",
+            "linksCollapsed": false,
+            "unlinkedCollapsed": true
+          },
+          "icon": "links-going-out",
+          "title": "Links de saída"
+        }
+      },
+      {
+        "id": "8d63d36e0f898a5d",
+        "type": "leaf",
+        "state": {
+          "type": "outline",
+          "state": {
+            "file": "099_excalidraw/visao-geral-pdp.md",
+            "followCursor": false,
+            "showSearch": false,
+            "searchQuery": ""
+          },
+          "icon": "lucide-list",
+          "title": "Sumário"
+        }
+      },
+      {
+        "id": "95d9e8b9bc3cc342",
+        "type": "leaf",
+        "state": {
+          "type": "calendar",
+          "state": {},
+          "icon": "calendar-with-checkmark",
+          "title": "Calendar"
+        }
+      },
+      {
+        "id": "02dae9ea991b5ac4",
+        "type": "leaf",
+        "state": {
+          "type": "planner-timeline",
+          "state": {},
+          "icon": "calendar-with-checkmark",
+          "title": "Timeline"
+        }
+      },
+      {
+        "id": "f358a1bc23129beb",
+        "type": "leaf",
+        "state": {
+          "type": "git-view",
+          "state": {},
+          "icon": "git-pull-request",
+          "title": "Source Control"
+        }
+      }
+    ],
+    "currentTab": 4
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Abrir a troca rápida": false,
+      "graph:Abrir visualização em gráfico": false,
+      "command-palette:Abrir paleta de comandos": false,
+      "bases:Criar nova base": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "templater-obsidian:Templater": false,
+      "obsidian-day-planner:Open Timeline": false,
+      "obsidian-day-planner:Open Multi-Day View": false,
+      "obsidian-git:Open Git source control": false,
+      "periodic-notes:Open today": false
+    }
+  },
+  "active": "7f2cce0c192bed08",
+  "lastOpenFiles": [
+    "098_outros/Drawing 2026-04-21 21.25.11.excalidraw.md",
+    "098_outros/Viagem Buenos Aires.md",
+    "050_agenda/050.1_daily/2026-04-20.md",
+    "098_outros",
+    "050_agenda/050.1_daily/2026-04-17.md",
+    "050_agenda/050.1_daily/2026-04-15.md",
+    "050_agenda/050.1_daily/2026-04-16.md",
+    "099_excalidraw/visao-geral-pdp.md",
+    "050_agenda/050.1_daily/2026-04-14.md",
+    "050_agenda/050.1_daily/2026-04-13.md",
+    "099_excalidraw/Drawing 2026-04-10 19.16.31.excalidraw.md",
+    "050_agenda/050.1_daily/2026-04-10.md"
+  ]
+}
