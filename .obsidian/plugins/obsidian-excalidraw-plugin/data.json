@@ -42,7 +42,6 @@
   "isLeftHanded": false,
   "desktopUIMode": "tray",
   "tabletUIMode": "compact",
-  "phoneUIMode": "mobile",
   "iframeMatchExcalidrawTheme": true,
   "matchTheme": false,
   "matchThemeAlways": false,
@@ -76,7 +75,6 @@
   "focusOnFileTab": true,
   "openInMainWorkspace": true,
   "showLinkBrackets": true,
-  "syncElementLinkWithText": false,
   "allowCtrlClick": true,
   "forceWrap": false,
   "pageTransclusionCharLimit": 200,
@@ -113,7 +111,7 @@
   "library2": {
     "type": "excalidrawlib",
     "version": 2,
-    "source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/2.22.0",
+    "source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/2.18.2",
     "libraryItems": [
       {
         "status": "unpublished",
@@ -172,7 +170,6 @@
   "taskboneEnabled": false,
   "taskboneAPIkey": "",
   "pinnedScripts": [],
-  "sidepanelTabs": [],
   "customPens": [
     {
       "type": "default",
@@ -855,5 +852,8 @@
     "alignment": "center",
     "margin": "normal"
   },
-  "disableContextMenu": true
+  "disableContextMenu": true,
+  "phoneUIMode": "mobile",
+  "syncElementLinkWithText": false,
+  "sidepanelTabs": []
 }
