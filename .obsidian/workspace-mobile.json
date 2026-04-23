@@ -22,15 +22,15 @@
             }
           },
           {
-            "id": "5fa103bf5fc9b3b1",
+            "id": "5a54a4cfbeee070b",
             "type": "leaf",
             "state": {
               "type": "excalidraw",
               "state": {
-                "file": "098_outros/Priorização estudos.md"
+                "file": "098_outros/Check-list Buenos Aires.md"
               },
               "icon": "excalidraw-icon",
-              "title": "Priorização estudos"
+              "title": "Check-list Buenos Aires"
             }
           }
         ],
@@ -214,10 +214,10 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "5fa103bf5fc9b3b1",
+  "active": "5a54a4cfbeee070b",
   "lastOpenFiles": [
-    "098_outros/Priorização estudos.md",
     "099_excalidraw/visao-geral-pdp.md",
+    "098_outros/Priorização estudos.md",
     "098_outros/Check-list Buenos Aires.md",
     "050_agenda/050.1_daily/2026-04-20.md",
     "098_outros/Viagem Buenos Aires.md",
