@@ -20,8 +20,23 @@
               "icon": "excalidraw-icon",
               "title": "visao-geral-pdp"
             }
+          },
+          {
+            "id": "5c642d5d1344a6c2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "050_agenda/050.1_daily/2026-05-07.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026-05-07"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -141,7 +156,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 334.5
+    "width": 334.5,
+    "collapsed": true
   },
   "right": {
     "id": "17f45d87c929b8ce",
@@ -186,8 +202,7 @@
               "title": "Source Control"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       },
       {
         "id": "cf14d884aae3829c",
@@ -224,15 +239,16 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "dcc0862c9721e3a8",
+  "active": "5c642d5d1344a6c2",
   "lastOpenFiles": [
+    "099_excalidraw/visao-geral-pdp.md",
+    "050_agenda/050.1_daily/2026-05-07.md",
     "098_outros/Plataforma de dados.md",
     "040_entrega/AWS Certified Machine Learning Associate.md",
     "050_agenda/050.1_daily/2026-04-01.md",
     "050_agenda/050.1_daily/2026-04-06.md",
     "099_excalidraw/Drawing 2026-04-10 19.16.31.excalidraw.md",
     "050_agenda/050.1_daily/2026-05-06.md",
-    "099_excalidraw/visao-geral-pdp.md",
     "050_agenda/050.1_daily/2026-05-05.md",
     "050_agenda/050.1_daily/2026-05-04.md",
     "098_outros/Priorização estudos.md",
@@ -252,7 +268,6 @@
     "050_agenda/050.1_daily/2026-03-10.md",
     "050_agenda/050.1_daily/2026-03-09.md",
     "050_agenda/050.1_daily/2026-03-06.md",
-    "070_conhecimento/Untitled.md",
     "070_conhecimento",
     "050_agenda/050.5_yearly",
     "050_agenda/050.4_quarterly",
