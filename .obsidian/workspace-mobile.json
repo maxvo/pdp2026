@@ -210,10 +210,11 @@
       "templater-obsidian:Templater": false,
       "obsidian-day-planner:Open Timeline": false,
       "obsidian-day-planner:Open Multi-Day View": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "periodic-notes:Open today": false
     }
   },
-  "active": "6e768ac028d97f96",
+  "active": "db702df3f76c8953",
   "lastOpenFiles": [
     "098_outros/Plataforma de dados.md",
     "050_agenda/050.1_daily/2026-05-13.md",
