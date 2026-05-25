@@ -34,9 +34,21 @@
               "icon": "lucide-file",
               "title": "2026-05-20"
             }
+          },
+          {
+            "id": "59d6cafdda9f291b",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "098_outros/Priorização estudos.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Priorização estudos"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -234,19 +246,20 @@
       "templater-obsidian:Templater": true,
       "obsidian-day-planner:Open Timeline": false,
       "obsidian-day-planner:Open Multi-Day View": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "periodic-notes:Open today": false
     }
   },
-  "active": "5c642d5d1344a6c2",
+  "active": "59d6cafdda9f291b",
   "lastOpenFiles": [
-    "050_agenda/050.1_daily/2026-05-07.md",
+    "099_excalidraw/visao-geral-pdp.md",
     "050_agenda/050.1_daily/2026-05-20.md",
+    "050_agenda/050.1_daily/2026-05-07.md",
     "098_outros/Sem título.md",
     "098_outros/Drawing 2026-05-18 17.35.17.excalidraw.md",
     "050_agenda/050.1_daily/2026-05-19.md",
     "050_agenda/050.1_daily/2026-05-14.md",
     "050_agenda/050.1_daily/2026-05-13.md",
-    "099_excalidraw/visao-geral-pdp.md",
     "098_outros/Plataforma de dados.md",
     "040_entrega/AWS Certified Machine Learning Associate.md",
     "050_agenda/050.1_daily/2026-04-01.md",
