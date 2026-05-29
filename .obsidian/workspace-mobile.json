@@ -22,15 +22,15 @@
             }
           },
           {
-            "id": "74684bc72593c911",
+            "id": "9bc059de78799035",
             "type": "leaf",
             "state": {
               "type": "excalidraw",
               "state": {
-                "file": "098_outros/Drawing 2026-05-18 17.35.17.excalidraw.md"
+                "file": "099_excalidraw/Drawing 2026-04-10 19.16.31.excalidraw.md"
               },
               "icon": "excalidraw-icon",
-              "title": "Drawing 2026-05-18 17.35.17.excalidraw"
+              "title": "Drawing 2026-04-10 19.16.31.excalidraw"
             }
           }
         ],
@@ -196,6 +196,16 @@
           "icon": "git-pull-request",
           "title": "Source Control"
         }
+      },
+      {
+        "id": "e4cdc90e52408e18",
+        "type": "leaf",
+        "state": {
+          "type": "planner-time-tracker",
+          "state": {},
+          "icon": "timer",
+          "title": "Time Tracker"
+        }
       }
     ],
     "currentTab": 4
@@ -214,10 +224,11 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "02dae9ea991b5ac4",
+  "active": "9bc059de78799035",
   "lastOpenFiles": [
-    "050_agenda/050.1_daily/2026-05-19.md",
+    "099_excalidraw/visao-geral-pdp.md",
     "098_outros/Drawing 2026-05-18 17.35.17.excalidraw.md",
+    "050_agenda/050.1_daily/2026-05-19.md",
     "098_outros/Sem título.md",
     "098_outros/Plataforma de dados.md",
     "050_agenda/050.1_daily/2026-05-14.md",
@@ -226,7 +237,6 @@
     "050_agenda/050.1_daily/2026-05-07.md",
     "/050_agenda/050.1_daily",
     "/050_agenda",
-    "099_excalidraw/visao-geral-pdp.md",
     "/098_outros/Plataforma de dados.md",
     "/098_outros",
     "/050_agenda/050.1_daily/2026-05-06.md",
