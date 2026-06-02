@@ -220,12 +220,12 @@
       "templater-obsidian:Templater": false,
       "obsidian-day-planner:Open Timeline": false,
       "obsidian-day-planner:Open Multi-Day View": false,
-      "obsidian-git:Open Git source control": false,
-      "periodic-notes:Open today": false
+      "obsidian-git:Open Git source control": false
     }
   },
   "active": "9bc059de78799035",
   "lastOpenFiles": [
+    "099_excalidraw/Drawing 2026-04-10 19.16.31.excalidraw.md",
     "099_excalidraw/visao-geral-pdp.md",
     "098_outros/Drawing 2026-05-18 17.35.17.excalidraw.md",
     "050_agenda/050.1_daily/2026-05-19.md",
@@ -254,7 +254,6 @@
     "050_agenda/050.1_daily/2026-04-16.md",
     "050_agenda/050.1_daily/2026-04-14.md",
     "050_agenda/050.1_daily/2026-04-13.md",
-    "099_excalidraw/Drawing 2026-04-10 19.16.31.excalidraw.md",
     "050_agenda/050.1_daily/2026-04-10.md"
   ]
 }
