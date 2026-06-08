@@ -44,9 +44,21 @@
               "icon": "excalidraw-icon",
               "title": "Drawing 2026-06-06 12.45.38.excalidraw"
             }
+          },
+          {
+            "id": "51469c83b7d4d02a",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "098_outros/Drawing 2026-06-08 14.46.56.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2026-06-08 14.46.56.excalidraw"
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -236,9 +248,11 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "68815c38236b5187",
+  "active": "51469c83b7d4d02a",
   "lastOpenFiles": [
     "098_outros/Drawing 2026-06-06 12.45.38.excalidraw.md",
+    "098_outros/Drawing 2026-06-08 14.46.56.excalidraw.md",
+    "098_outros/Sem título 1.md",
     "099_excalidraw/Drawing 2026-04-10 19.16.31.excalidraw.md",
     "099_excalidraw/visao-geral-pdp.md",
     "098_outros/Drawing 2026-05-18 17.35.17.excalidraw.md",
@@ -265,8 +279,6 @@
     "098_outros",
     "050_agenda/050.1_daily/2026-04-17.md",
     "050_agenda/050.1_daily/2026-04-15.md",
-    "050_agenda/050.1_daily/2026-04-16.md",
-    "050_agenda/050.1_daily/2026-04-14.md",
-    "050_agenda/050.1_daily/2026-04-13.md"
+    "050_agenda/050.1_daily/2026-04-16.md"
   ]
 }
