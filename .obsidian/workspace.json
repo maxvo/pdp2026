@@ -20,8 +20,21 @@
               "icon": "excalidraw-icon",
               "title": "visao-geral-pdp"
             }
+          },
+          {
+            "id": "d858df248e7ac32d",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "098_outros/Drawing 2026-06-08 14.46.56.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2026-06-08 14.46.56.excalidraw"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -226,14 +239,19 @@
       "periodic-notes:Open today": false
     }
   },
-  "active": "9e15856f46e8c6cb",
+  "active": "d858df248e7ac32d",
   "lastOpenFiles": [
+    "098_outros/Drawing 2026-06-06 12.45.38.excalidraw.md",
+    "098_outros/Drawing 2026-06-08 14.46.56.excalidraw.md",
+    "098_outros/Drawing 2026-06-22 15.39.50.excalidraw.md",
+    "098_outros/Drawing 2026-06-18 11.02.05.excalidraw.md",
+    "098_outros/Drawing 2026-05-18 17.35.17.excalidraw.md",
     "099_excalidraw/visao-geral-pdp.md",
+    "098_outros/Sem título 1.md",
     "050_agenda/050.1_daily/2026-05-20.md",
     "098_outros/Priorização estudos.md",
     "050_agenda/050.1_daily/2026-05-07.md",
     "098_outros/Sem título.md",
-    "098_outros/Drawing 2026-05-18 17.35.17.excalidraw.md",
     "050_agenda/050.1_daily/2026-05-19.md",
     "050_agenda/050.1_daily/2026-05-14.md",
     "050_agenda/050.1_daily/2026-05-13.md",
@@ -250,11 +268,6 @@
     "098_outros/Viagem Buenos Aires.md",
     "098_outros/Drawing 2026-04-21 21.25.11.excalidraw.md",
     "098_outros",
-    "050_agenda/050.1_daily/2026-04-20.md",
-    "050_agenda/050.1_daily/2026-04-17.md",
-    "050_agenda/050.1_daily/2026-04-16.md",
-    "050_agenda/050.1_daily/2026-04-15.md",
-    "050_agenda/050.1_daily/2026-04-14.md",
     "070_conhecimento",
     "050_agenda/050.5_yearly",
     "050_agenda/050.4_quarterly",
