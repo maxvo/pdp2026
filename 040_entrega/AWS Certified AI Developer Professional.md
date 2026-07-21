@@ -1,7 +1,7 @@
 ---
 resultado:
   - "[[Obter duas certificações internacionais]]"
-startDate: 2026-07-01
-dueDate: 2026-09-30
+startDate: 2026-10-01
+dueDate: 2026-11-30
 status: waiting
 ---

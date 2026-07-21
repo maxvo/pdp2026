@@ -25,14 +25,12 @@
             "id": "d858df248e7ac32d",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "excalidraw",
               "state": {
-                "file": "030_resultado/Analisar detalhadamente um case de cada vertical (cartões, pagamentos e contas).md",
-                "mode": "preview",
-                "source": false
+                "file": "099_excalidraw/visao-geral-pdp.md"
               },
-              "icon": "lucide-file",
-              "title": "Analisar detalhadamente um case de cada vertical (cartões, pagamentos e contas)"
+              "icon": "excalidraw-icon",
+              "title": "visao-geral-pdp"
             }
           }
         ],
@@ -237,11 +235,26 @@
       "templater-obsidian:Templater": true,
       "obsidian-day-planner:Open Timeline": false,
       "obsidian-day-planner:Open Multi-Day View": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "periodic-notes:Open today": false
     }
   },
   "active": "d858df248e7ac32d",
   "lastOpenFiles": [
+    "040_entrega/Camada semântica.md",
+    "099_excalidraw/visao-geral-pdp.md",
+    "040_entrega/AWS Certified AI Developer Professional.md",
+    "040_entrega/AWS Certified Machine Learning Associate.md",
+    "040_entrega/Atualização da esteira de engenharia de analytics.md",
+    "040_entrega/Collaborative Learning.md",
+    "040_entrega/Designing data intensive applications.md",
+    "040_entrega/Learning Go 2nd Edition ✅.md",
+    "040_entrega/Building applications with AI Agents ✅.md",
+    "040_entrega/Agentic Mesh.md",
+    "040_entrega/AI Engineering.md",
+    "030_resultado/Estudar seis livros técnicos.md",
+    "099_excalidraw/habilidades-vs-objetivos.md",
+    "030_resultado/Analisar detalhadamente um case de cada vertical (cartões, pagamentos e contas).md",
     "010_foco/010.4_Conectar estratégia técnica e objetivos de negócio.md",
     "010_foco/010.3_Preparar sucessores e novas lideranças técnicas.md",
     "010_foco/010.2_Ser reconhecido como um líder técnico de excelência.md",
@@ -254,20 +267,6 @@
     "098_outros/Viagem Buenos Aires.md",
     "098_outros/Sem título 1.md",
     "098_outros/Sem título.md",
-    "098_outros/Drawing 2026-06-22 15.39.50.excalidraw.md",
-    "098_outros/Drawing 2026-05-18 17.35.17.excalidraw.md",
-    "098_outros/Check-list Buenos Aires.md",
-    "098_outros/Priorização estudos.md",
-    "098_outros/processo coord.md",
-    "098_outros/Drawing 2026-06-18 11.02.05.excalidraw.md",
-    "099_excalidraw/visao-geral-pdp.md",
-    "050_agenda/050.1_daily/2026-05-20.md",
-    "050_agenda/050.1_daily/2026-05-07.md",
-    "050_agenda/050.1_daily/2026-05-19.md",
-    "050_agenda/050.1_daily/2026-05-14.md",
-    "050_agenda/050.1_daily/2026-05-13.md",
-    "040_entrega/AWS Certified Machine Learning Associate.md",
-    "050_agenda/050.1_daily/2026-04-01.md",
     "098_outros",
     "070_conhecimento",
     "050_agenda/050.5_yearly",
